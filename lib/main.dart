@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
+import 'services/auth_service.dart';
+import 'screens/login_screen.dart';
+import 'screens/chats_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize GraphQL store
+  await initHiveForFlutter();
+  
   runApp(const MainApp());
 }
 
@@ -9,12 +18,31 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      title: 'GraphQL Chat Test',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        useMaterial3: true,
       ),
+      home: const AuthWrapper(),
+      routes: {
+        '/login': (context) => const LoginScreen(),
+        '/chats': (context) => const ChatsScreen(),
+      },
     );
+  }
+}
+
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // Check if user is already authenticated
+    if (AuthService().isAuthenticated) {
+      return const ChatsScreen();
+    } else {
+      return const LoginScreen();
+    }
   }
 }

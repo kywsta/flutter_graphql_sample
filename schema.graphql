@@ -74,6 +74,7 @@ type Mutation {
   createChat(input: CreateChatInput!): Chat!
   sendMessage(input: SendMessageInput!): Message!
   addChatMember(input: AddMemberInput!): ChatMember!
+  setTypingStatus(isTyping: Boolean!, chatId: String!): Boolean!
 }
 
 input CreateChatInput {
@@ -93,4 +94,16 @@ input AddMemberInput {
   chatId: String!
   userId: String!
   role: ChatMemberRole! = MEMBER
+}
+
+type Subscription {
+  messageAdded(chatId: String!): Message!
+  typingIndicator(chatId: String!): TypingIndicator!
+}
+
+type TypingIndicator {
+  chatId: String!
+  userId: String!
+  username: String!
+  isTyping: Boolean!
 }

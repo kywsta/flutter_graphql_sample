@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'auth_service.dart';
 
@@ -6,8 +7,8 @@ class GraphQLService {
   factory GraphQLService() => _instance;
   GraphQLService._internal();
 
-  static const String graphqlEndpoint = 'http://192.168.1.12:3000/graphql';
-  static const String subscriptionEndpoint = 'ws://192.168.1.12:3000/graphql';
+  static const String graphqlEndpoint = 'http://10.0.87.16:3000/graphql';
+  static const String subscriptionEndpoint = 'ws://10.0.87.16:3000/graphql';
 
   GraphQLClient? _client;
 
@@ -23,16 +24,20 @@ class GraphQLService {
     
     final WebSocketLink websocketLink = WebSocketLink(
       subscriptionEndpoint,
+      subProtocol: GraphQLProtocol.graphqlTransportWs,
       config: SocketClientConfig(
         autoReconnect: true,
         inactivityTimeout: const Duration(seconds: 30),
         initialPayload: () async {
           final token = AuthService().token;
           if (token != null) {
+            debugPrint('Connecting with token: $token');
             return {'Authorization': 'Bearer $token'};
           }
+          debugPrint('No token found to connect with websocket');
           return {};
         },
+        
       ),
     );
 
@@ -130,6 +135,12 @@ class GraphQLService {
     }
   ''';
 
+  static const String setTypingStatusMutation = '''
+    mutation SetTypingStatus(\$chatId: String!, \$isTyping: Boolean!) {
+      setTypingStatus(chatId: \$chatId, isTyping: \$isTyping)
+    }
+  ''';
+
   // GraphQL Subscriptions
   static const String messageAddedSubscription = '''
     subscription MessageAdded(\$chatId: String!) {
@@ -149,6 +160,7 @@ class GraphQLService {
       typingIndicator(chatId: \$chatId) {
         chatId
         userId
+        username
         isTyping
       }
     }

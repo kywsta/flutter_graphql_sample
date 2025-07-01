@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/auth_service.dart';
 import '../services/graphql_service.dart';
+import 'chat_detail_screen.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -236,27 +237,9 @@ class _ChatsScreenState extends State<ChatsScreen> {
   }
 
   void _openChatDetail(Map<String, dynamic> chat) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(chat['name']),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Chat ID: ${chat['id']}'),
-            Text('Creator ID: ${chat['creatorId']}'),
-            Text('Members: ${(chat['memberIds'] as List).length}'),
-            Text('Is Group: ${chat['isGroup']}'),
-            Text('Created: ${_formatDate(DateTime.parse(chat['createdAt']))}'),
-          ],
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('Close'),
-          ),
-        ],
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ChatDetailScreen(chat: chat),
       ),
     );
   }

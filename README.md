@@ -8,6 +8,9 @@ A Flutter application to test GraphQL subscriptions with an Express.js server us
 - ✅ JWT token management
 - ✅ GraphQL queries for chat data
 - ✅ Real-time GraphQL subscriptions support
+- ✅ Chat messaging with real-time updates
+- ✅ Message sending via GraphQL mutations
+- ✅ Subscription testing and debugging tools
 - ✅ Clean UI for testing purposes
 
 ## Prerequisites
@@ -47,8 +50,17 @@ flutter run
 
 ### 3. Test GraphQL Features
 - **Queries**: Chat list is loaded using `getUserChats` query
-- **Subscriptions**: Ready for `messageAdded` and `typingIndicator` subscriptions
+- **Mutations**: Send messages using `sendMessage` mutation
+- **Subscriptions**: Real-time message updates via `messageAdded` subscription
 - **Authentication**: JWT token is automatically included in GraphQL requests
+
+### 4. Test Subscriptions
+- Tap on any chat to open the chat detail screen
+- Send messages and see real-time updates
+- Type messages to see typing indicators in action
+- Use the bug report icon (🐛) to access subscription test screens:
+  - **Simple Test**: Basic message subscription testing
+  - **Enhanced Test**: Dual-panel testing for messages + typing indicators
 
 ## GraphQL Operations Supported
 
@@ -64,21 +76,27 @@ flutter run
 
 ### Subscriptions
 - `messageAdded`: Subscribe to new messages in a chat
-- `typingIndicator`: Subscribe to typing indicators
+- `typingIndicator`: Subscribe to typing indicators with username support
+
+### New Mutations (from updated schema)
+- `setTypingStatus`: Set user typing status in a chat
 
 ## Architecture
 
 ```
 lib/
-├── main.dart                 # App entry point
+├── main.dart                      # App entry point
 ├── models/
-│   └── chat_models.dart     # Data models (User, Chat, Message, etc.)
+│   └── chat_models.dart          # Data models (User, Chat, Message, etc.)
 ├── services/
-│   ├── auth_service.dart    # Authentication & token management
-│   └── graphql_service.dart # GraphQL client configuration
+│   ├── auth_service.dart         # Authentication & token management
+│   └── graphql_service.dart      # GraphQL client configuration
 └── screens/
-    ├── login_screen.dart    # Login UI
-    └── chats_screen.dart    # Chat list UI with GraphQL integration
+    ├── login_screen.dart         # Login UI
+    ├── chats_screen.dart         # Chat list UI with GraphQL integration
+    ├── chat_detail_screen.dart   # Chat messages with real-time subscriptions & typing
+    ├── subscription_test_screen.dart # Basic subscription debugging and testing
+    └── enhanced_subscription_test_screen.dart # Advanced typing indicator testing
 ```
 
 ## Key Components

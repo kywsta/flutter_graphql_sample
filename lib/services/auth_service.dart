@@ -10,7 +10,7 @@ class AuthService {
   Map<String, dynamic>? _user;
 
   // Base URL for your Express.js server
-  static const String baseUrl = 'http://localhost:3000';
+  static const String baseUrl = 'http://10.0.87.16:3000';
 
   String? get token => _token;
   Map<String, dynamic>? get user => _user;

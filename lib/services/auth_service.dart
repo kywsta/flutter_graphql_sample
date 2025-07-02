@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_graphql_subscription_test/constants/network.dart';
 
 class AuthService {
   static final AuthService _instance = AuthService._internal();
@@ -9,9 +10,6 @@ class AuthService {
   String? _token;
   Map<String, dynamic>? _user;
 
-  // Base URL for your Express.js server
-  static const String baseUrl = 'http://10.0.87.16:3000';
-
   String? get token => _token;
   Map<String, dynamic>? get user => _user;
   bool get isAuthenticated => _token != null;
@@ -19,7 +17,7 @@ class AuthService {
   Future<bool> login(String username, String password) async {
     try {
       final response = await _dio.post(
-        '$baseUrl/auth/login',
+        NetworkConstants.login,
         data: {
           'username': username,
           'password': password,
@@ -44,7 +42,7 @@ class AuthService {
   Future<bool> register(String username, String password, {String? email}) async {
     try {
       final response = await _dio.post(
-        '$baseUrl/auth/register',
+        NetworkConstants.register,
         data: {
           'username': username,
           'password': password,

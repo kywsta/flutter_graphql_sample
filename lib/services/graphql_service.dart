@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_graphql_subscription_test/constants/network.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'auth_service.dart';
 
@@ -6,9 +7,6 @@ class GraphQLService {
   static final GraphQLService _instance = GraphQLService._internal();
   factory GraphQLService() => _instance;
   GraphQLService._internal();
-
-  static const String graphqlEndpoint = 'http://10.0.87.16:3000/graphql';
-  static const String subscriptionEndpoint = 'ws://10.0.87.16:3000/graphql';
 
   GraphQLClient? _client;
 
@@ -20,10 +18,10 @@ class GraphQLService {
   }
 
   void _initializeClient() {
-    final HttpLink httpLink = HttpLink(graphqlEndpoint);
+    final HttpLink httpLink = HttpLink(NetworkConstants.graphqlEndpoint);
     
     final WebSocketLink websocketLink = WebSocketLink(
-      subscriptionEndpoint,
+      NetworkConstants.graphqlSubscriptionEndpoint,
       subProtocol: GraphQLProtocol.graphqlTransportWs,
       config: SocketClientConfig(
         autoReconnect: true,

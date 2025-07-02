@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/graphql_service.dart';
+import '../utils/datetime_utils.dart';
 
 class EnhancedSubscriptionTestScreen extends StatefulWidget {
   final String chatId;
@@ -344,9 +345,9 @@ class _EnhancedSubscriptionTestScreenState extends State<EnhancedSubscriptionTes
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('User: $userId', style: const TextStyle(fontSize: 10)),
-            Text('Sent: ${_formatTime(createdAt)}', style: const TextStyle(fontSize: 10)),
+            Text('Sent: ${DateTimeUtils.formatTestTime(createdAt)}', style: const TextStyle(fontSize: 10)),
             Text(
-              'Received: ${_formatTime(receivedAt)}',
+              'Received: ${DateTimeUtils.formatTestTime(receivedAt)}',
               style: const TextStyle(
                 fontSize: 10,
                 color: Colors.green,
@@ -381,7 +382,7 @@ class _EnhancedSubscriptionTestScreenState extends State<EnhancedSubscriptionTes
             style: const TextStyle(fontSize: 14),
           ),
           subtitle: Text(
-            'Received: ${_formatTime(timestamp)}',
+            'Received: ${DateTimeUtils.formatTestTime(timestamp)}',
             style: const TextStyle(
               fontSize: 10,
               color: Colors.orange,
@@ -407,7 +408,7 @@ class _EnhancedSubscriptionTestScreenState extends State<EnhancedSubscriptionTes
             style: const TextStyle(fontSize: 14),
           ),
           subtitle: Text(
-            'Sent: ${_formatTime(timestamp)}',
+            'Sent: ${DateTimeUtils.formatTestTime(timestamp)}',
             style: const TextStyle(
               fontSize: 10,
               color: Colors.blue,
@@ -419,7 +420,5 @@ class _EnhancedSubscriptionTestScreenState extends State<EnhancedSubscriptionTes
     }
   }
 
-  String _formatTime(DateTime dateTime) {
-    return '${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}';
-  }
+
 } 

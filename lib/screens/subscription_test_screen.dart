@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import '../services/graphql_service.dart';
+import '../utils/datetime_utils.dart';
 
 class SubscriptionTestScreen extends StatefulWidget {
   final String chatId;
@@ -200,9 +201,9 @@ class _SubscriptionTestScreenState extends State<SubscriptionTestScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text('From user: $userId'),
-            Text('Sent: ${_formatTime(createdAt)}'),
-            Text(
-              'Received: ${_formatTime(receivedAt)}',
+                            Text('Sent: ${DateTimeUtils.formatTestTime(createdAt)}'),
+                Text(
+                  'Received: ${DateTimeUtils.formatTestTime(receivedAt)}',
               style: const TextStyle(
                 color: Colors.green,
                 fontWeight: FontWeight.bold,
@@ -218,7 +219,5 @@ class _SubscriptionTestScreenState extends State<SubscriptionTestScreen> {
     );
   }
 
-  String _formatTime(DateTime dateTime) {
-    return '${dateTime.hour}:${dateTime.minute.toString().padLeft(2, '0')}:${dateTime.second.toString().padLeft(2, '0')}';
-  }
+
 } 

@@ -1,6 +1,9 @@
 class NetworkConstants {
-  static const String baseUrl = 'http://10.0.87.27:3000';
-  static const String baseWsUrl = 'ws://10.0.87.27:3000';
+  static const String _http = 'http://';
+  static const String _ws = 'ws://';
+  static const String _base = '10.0.87.207:3000';
+  static const String baseUrl = '$_http$_base';
+  static const String baseWsUrl = '$_ws$_base';
   static const String authApi = '$baseUrl/auth';
   static const String graphqlEndpoint = '$baseUrl/graphql';
   static const String graphqlSubscriptionEndpoint = '$baseWsUrl/graphql';

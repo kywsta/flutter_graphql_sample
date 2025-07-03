@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../services/graphql_service.dart';
+import '../core/services/graphql_service.dart';
 import '../utils/datetime_utils.dart';
 
 class EnhancedSubscriptionTestScreen extends StatefulWidget {

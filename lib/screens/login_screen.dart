@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../services/auth_service.dart';
-import '../services/graphql_service.dart';
+import '../core/services/auth_service.dart';
+import '../core/services/graphql_service.dart';
 import 'chats_screen.dart';
 
 class LoginScreen extends StatefulWidget {

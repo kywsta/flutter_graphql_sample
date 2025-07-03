@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_graphql_subscription_test/constants/network.dart';
+import 'package:flutter_graphql_subscription_test/core/constants/network.dart';
 
 class AuthService {
   static final AuthService _instance = AuthService._internal();

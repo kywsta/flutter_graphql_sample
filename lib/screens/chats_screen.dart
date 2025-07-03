@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../services/auth_service.dart';
-import '../services/graphql_service.dart';
+import '../core/services/auth_service.dart';
+import '../core/services/graphql_service.dart';
 import 'chat_detail_screen.dart';
 
 class ChatsScreen extends StatefulWidget {

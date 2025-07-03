@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_graphql_subscription_test/constants/network.dart';
+import 'package:flutter_graphql_subscription_test/core/constants/network.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'auth_service.dart';
 
@@ -62,7 +62,7 @@ class GraphQLService {
     _client = null;
     _initializeClient();
   }
-
+  
   // GraphQL Queries
   static const String getUserChatsQuery = '''
     query GetUserChats {

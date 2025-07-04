@@ -13,4 +13,6 @@ class DataEntity extends Equatable {
   
   @override
   List<Object?> get props => [id, createdAt, updatedAt];
+
+  Map<String, dynamic> toJson();
 }

@@ -3,7 +3,7 @@ import 'package:flutter_graphql_subscription_test/core/auth/auth_session.dart';
 import 'package:flutter_graphql_subscription_test/core/di/service_locator.dart';
 import 'package:flutter_graphql_subscription_test/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../core/services/graphql_service.dart';
+import '../core/network/graphql_service.dart';
 import 'chat_detail_screen.dart';
 
 class ChatsScreen extends StatefulWidget {

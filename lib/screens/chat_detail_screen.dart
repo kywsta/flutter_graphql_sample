@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_graphql_subscription_test/core/auth/auth_session.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../core/services/graphql_service.dart';
+import '../core/network/graphql_service.dart';
 import '../utils/datetime_utils.dart';
 import 'subscription_test_screen.dart';
 import 'enhanced_subscription_test_screen.dart';

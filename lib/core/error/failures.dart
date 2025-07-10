@@ -1,7 +1,7 @@
 import 'package:flutter_graphql_subscription_test/core/error/exceptions.dart';
 
 class Failure {
-  final Exception exception;
+  final Object exception;
   final StackTrace? stackTrace;
 
   final FailureInterpretation interpretation;
@@ -53,7 +53,7 @@ class FailuerInterpretationHelper {
     ),
   };
 
-  FailureInterpretation getInterpretation(Exception exception) {
+  FailureInterpretation getInterpretation(Object exception) {
     switch (exception) {
       case UnauthorizedException():
         return _interpretations[UnauthorizedException]!;

@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_subscription_test/core/auth/auth_session.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../core/services/auth_service.dart';
 import '../core/services/graphql_service.dart';
 import '../utils/datetime_utils.dart';
 import 'subscription_test_screen.dart';
@@ -250,7 +250,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   }
 
   Widget _buildMessageBubble(Map<String, dynamic> message) {
-    final currentUserId = AuthService().user?['id'].toString();
+    final currentUserId = AuthSession().userId;
     final isMyMessage = message['userId'].toString() == currentUserId;
     final content = message['content'] as String;
     final createdAt = DateTime.parse(message['createdAt']);
@@ -528,7 +528,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     final userId = typingData['userId'] as String;
     final username = typingData['username'] as String;
     final isTyping = typingData['isTyping'] as bool;
-    final currentUserId = AuthService().user?['id'].toString();
+    final currentUserId = AuthSession().userId;
 
     // Don't show typing indicator for current user
     if (userId == currentUserId) return;

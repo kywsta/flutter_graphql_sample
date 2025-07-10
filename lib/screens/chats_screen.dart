@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_graphql_subscription_test/core/auth/auth_session.dart';
+import 'package:flutter_graphql_subscription_test/core/di/service_locator.dart';
+import 'package:flutter_graphql_subscription_test/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import '../core/services/auth_service.dart';
 import '../core/services/graphql_service.dart';
 import 'chat_detail_screen.dart';
 
@@ -41,7 +43,8 @@ class _ChatsScreenState extends State<ChatsScreen> {
             document: gql(GraphQLService.getUserChatsQuery),
             fetchPolicy: FetchPolicy.cacheAndNetwork,
           ),
-          builder: (QueryResult result, {VoidCallback? refetch, FetchMore? fetchMore}) {
+          builder: (QueryResult result,
+              {VoidCallback? refetch, FetchMore? fetchMore}) {
             if (result.hasException) {
               return Center(
                 child: Column(
@@ -152,9 +155,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         subtitle: Text(
-          isGroup 
-            ? '$memberCount members'
-            : 'Direct message',
+          isGroup ? '$memberCount members' : 'Direct message',
         ),
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -191,7 +192,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   }
 
   void _showUserInfo(BuildContext context) {
-    final user = AuthService().user;
+    final userAuth = AuthSession().userAuthModel;
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -200,9 +201,9 @@ class _ChatsScreenState extends State<ChatsScreen> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Username: ${user?['username'] ?? 'Unknown'}'),
-            Text('Email: ${user?['email'] ?? 'Not provided'}'),
-            Text('ID: ${user?['id'] ?? 'Unknown'}'),
+            Text('Username: ${userAuth?.user.username ?? 'Unknown'}'),
+            Text('Email: ${userAuth?.user.email ?? 'Not provided'}'),
+            Text('ID: ${userAuth?.user.id ?? 'Unknown'}'),
           ],
         ),
         actions: [
@@ -216,8 +217,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   }
 
   void _logout() {
-    AuthService().logout();
-    Navigator.of(context).pushReplacementNamed('/login');
+    serviceLocator.get<AuthBloc>().add(LogoutEvent());
   }
 
   void _showCreateChatDialog() {
@@ -243,4 +243,4 @@ class _ChatsScreenState extends State<ChatsScreen> {
       ),
     );
   }
-} 
+}

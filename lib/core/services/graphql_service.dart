@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_graphql_subscription_test/core/auth/auth_session.dart';
 import 'package:flutter_graphql_subscription_test/core/constants/network.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'auth_service.dart';
 
 class GraphQLService {
   static final GraphQLService _instance = GraphQLService._internal();
@@ -27,7 +27,7 @@ class GraphQLService {
         autoReconnect: true,
         inactivityTimeout: const Duration(seconds: 30),
         initialPayload: () async {
-          final token = AuthService().token;
+          final token = AuthSession().authToken;
           if (token != null) {
             debugPrint('Connecting with token: $token');
             return {'Authorization': 'Bearer $token'};
@@ -41,7 +41,7 @@ class GraphQLService {
 
     final AuthLink authLink = AuthLink(
       getToken: () async {
-        final token = AuthService().token;
+        final token = AuthSession().authToken;
         return token != null ? 'Bearer $token' : null;
       },
     );

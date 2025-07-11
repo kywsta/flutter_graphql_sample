@@ -1,7 +1,7 @@
+import '../../../../core/graphql/schema.graphql.dart';
 import 'dart:async';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
-import 'types.graphql.dart';
 
 class Variables$Query$GetChatMessages {
   factory Variables$Query$GetChatMessages({

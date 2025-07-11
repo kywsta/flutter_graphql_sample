@@ -1,0 +1,11 @@
+subscription MessageAdded($chatId: String!) {
+  messageAdded(chatId: $chatId) {
+    chatId
+    userId
+    content
+    createdAt
+    id
+    type
+    replyToId
+  }
+}

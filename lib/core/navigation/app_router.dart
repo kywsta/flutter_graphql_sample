@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_graphql_subscription_test/core/auth/auth_session.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/presentation/pages/login_screen.dart';
-import 'package:flutter_graphql_subscription_test/screens/chats_screen.dart';
+import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
+import 'package:flutter_graphql_sample/features/auth/presentation/pages/login_screen.dart';
+import 'package:flutter_graphql_sample/screens/chats_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {}

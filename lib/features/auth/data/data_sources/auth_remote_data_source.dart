@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_graphql_subscription_test/core/constants/network.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/domain/models/login_model.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/domain/models/register_model.dart';
-import 'package:flutter_graphql_subscription_test/core/auth/models/user_auth_model.dart';
+import 'package:flutter_graphql_sample/core/constants/network.dart';
+import 'package:flutter_graphql_sample/features/auth/domain/models/login_model.dart';
+import 'package:flutter_graphql_sample/features/auth/domain/models/register_model.dart';
+import 'package:flutter_graphql_sample/core/auth/models/user_auth_model.dart';
 
 abstract class AuthRemoteDataSource {
   Future<UserAuthModel> login(LoginModel loginModel);

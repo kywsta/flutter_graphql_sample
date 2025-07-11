@@ -1,5 +1,5 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_graphql_subscription_test/core/auth/models/user_auth_model.dart';
+import 'package:flutter_graphql_sample/core/auth/models/user_auth_model.dart';
 
 class AuthSession extends ChangeNotifier {
   static final AuthSession _singleton = AuthSession._internal();

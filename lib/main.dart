@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_graphql_subscription_test/core/auth/auth_session.dart';
-import 'package:flutter_graphql_subscription_test/core/di/service_injector.dart';
-import 'package:flutter_graphql_subscription_test/core/di/service_locator.dart';
-import 'package:flutter_graphql_subscription_test/core/navigation/app_router.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
+import 'package:flutter_graphql_sample/core/di/service_injector.dart';
+import 'package:flutter_graphql_sample/core/di/service_locator.dart';
+import 'package:flutter_graphql_sample/core/navigation/app_router.dart';
+import 'package:flutter_graphql_sample/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() async {

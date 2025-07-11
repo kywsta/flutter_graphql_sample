@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_graphql_subscription_test/core/error/failures.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/domain/models/register_model.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/domain/repositories/auth_repository.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/domain/models/login_model.dart';
-import 'package:flutter_graphql_subscription_test/core/auth/models/user_auth_model.dart';
+import 'package:flutter_graphql_sample/core/error/failures.dart';
+import 'package:flutter_graphql_sample/features/auth/data/data_sources/auth_remote_data_source.dart';
+import 'package:flutter_graphql_sample/features/auth/domain/models/register_model.dart';
+import 'package:flutter_graphql_sample/features/auth/domain/repositories/auth_repository.dart';
+import 'package:flutter_graphql_sample/features/auth/domain/models/login_model.dart';
+import 'package:flutter_graphql_sample/core/auth/models/user_auth_model.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   final AuthRemoteDataSource dataSource;

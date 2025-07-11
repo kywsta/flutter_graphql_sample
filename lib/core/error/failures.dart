@@ -1,4 +1,4 @@
-import 'package:flutter_graphql_subscription_test/core/error/exceptions.dart';
+import 'package:flutter_graphql_sample/core/error/exceptions.dart';
 
 class Failure {
   final Object exception;

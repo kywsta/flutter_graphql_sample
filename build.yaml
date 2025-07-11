@@ -1,0 +1,11 @@
+targets:
+  $default:
+    builders:
+      graphql_codegen:
+        options:
+          clients:
+            - graphql
+          addTypename: false
+          scalars:
+            DateTimeISO: 
+              type: DateTime

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_graphql_subscription_test/core/di/service_locator.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/domain/models/login_model.dart';
-import 'package:flutter_graphql_subscription_test/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_graphql_sample/core/di/service_locator.dart';
+import 'package:flutter_graphql_sample/features/auth/domain/models/login_model.dart';
+import 'package:flutter_graphql_sample/features/auth/presentation/bloc/auth_bloc.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

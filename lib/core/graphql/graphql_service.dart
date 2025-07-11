@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_graphql_subscription_test/core/auth/auth_session.dart';
-import 'package:flutter_graphql_subscription_test/core/constants/network.dart';
+import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
+import 'package:flutter_graphql_sample/core/constants/network.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 class GraphQLService {
@@ -19,7 +19,7 @@ class GraphQLService {
 
   void _initializeClient() {
     final HttpLink httpLink = HttpLink(NetworkConstants.graphqlEndpoint);
-    
+
     final WebSocketLink websocketLink = WebSocketLink(
       NetworkConstants.graphqlSubscriptionEndpoint,
       subProtocol: GraphQLProtocol.graphqlTransportWs,
@@ -35,7 +35,6 @@ class GraphQLService {
           debugPrint('No token found to connect with websocket');
           return {};
         },
-        
       ),
     );
 
@@ -62,7 +61,37 @@ class GraphQLService {
     _client = null;
     _initializeClient();
   }
-  
+
+  Future<QueryResult<T>> query<T>(String query,
+      [Map<String, dynamic> variables = const {}]) {
+    return client.query(
+      QueryOptions(
+        document: gql(query),
+        variables: variables,
+      ),
+    );
+  }
+
+  Future<QueryResult<T>> mutate<T>(String mutation,
+      [Map<String, dynamic> variables = const {}]) {
+    return client.mutate(
+      MutationOptions(
+        document: gql(mutation),
+        variables: variables,
+      ),
+    );
+  }
+
+  Stream<QueryResult<T>> subscription<T>(String subscription,
+      [Map<String, dynamic> variables = const {}]) {
+    return client.subscribe(
+      SubscriptionOptions(
+        document: gql(subscription),
+        variables: variables,
+      ),
+    );
+  }
+
   // GraphQL Queries
   static const String getUserChatsQuery = '''
     query GetUserChats {
@@ -163,4 +192,4 @@ class GraphQLService {
       }
     }
   ''';
-} 
+}

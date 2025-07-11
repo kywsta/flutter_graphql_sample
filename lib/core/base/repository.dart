@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_graphql_subscription_test/core/error/failures.dart';
+import 'package:flutter_graphql_sample/core/error/failures.dart';
 
 abstract class Repository {
   Future<Either<T, Failure>> on<T>(Future<T> Function() fn) async {

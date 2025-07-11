@@ -4,44 +4,44 @@ import 'package:graphql/client.dart' as graphql;
 
 class Variables$Query$GetChats {
   factory Variables$Query$GetChats({
-    int? last,
-    String? before,
+    int? first,
+    String? after,
   }) =>
       Variables$Query$GetChats._({
-        if (last != null) r'last': last,
-        if (before != null) r'before': before,
+        if (first != null) r'first': first,
+        if (after != null) r'after': after,
       });
 
   Variables$Query$GetChats._(this._$data);
 
   factory Variables$Query$GetChats.fromJson(Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    if (data.containsKey('last')) {
-      final l$last = data['last'];
-      result$data['last'] = (l$last as int?);
+    if (data.containsKey('first')) {
+      final l$first = data['first'];
+      result$data['first'] = (l$first as int?);
     }
-    if (data.containsKey('before')) {
-      final l$before = data['before'];
-      result$data['before'] = (l$before as String?);
+    if (data.containsKey('after')) {
+      final l$after = data['after'];
+      result$data['after'] = (l$after as String?);
     }
     return Variables$Query$GetChats._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  int? get last => (_$data['last'] as int?);
+  int? get first => (_$data['first'] as int?);
 
-  String? get before => (_$data['before'] as String?);
+  String? get after => (_$data['after'] as String?);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    if (_$data.containsKey('last')) {
-      final l$last = last;
-      result$data['last'] = l$last;
+    if (_$data.containsKey('first')) {
+      final l$first = first;
+      result$data['first'] = l$first;
     }
-    if (_$data.containsKey('before')) {
-      final l$before = before;
-      result$data['before'] = l$before;
+    if (_$data.containsKey('after')) {
+      final l$after = after;
+      result$data['after'] = l$after;
     }
     return result$data;
   }
@@ -61,20 +61,20 @@ class Variables$Query$GetChats {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$last = last;
-    final lOther$last = other.last;
-    if (_$data.containsKey('last') != other._$data.containsKey('last')) {
+    final l$first = first;
+    final lOther$first = other.first;
+    if (_$data.containsKey('first') != other._$data.containsKey('first')) {
       return false;
     }
-    if (l$last != lOther$last) {
+    if (l$first != lOther$first) {
       return false;
     }
-    final l$before = before;
-    final lOther$before = other.before;
-    if (_$data.containsKey('before') != other._$data.containsKey('before')) {
+    final l$after = after;
+    final lOther$after = other.after;
+    if (_$data.containsKey('after') != other._$data.containsKey('after')) {
       return false;
     }
-    if (l$before != lOther$before) {
+    if (l$after != lOther$after) {
       return false;
     }
     return true;
@@ -82,11 +82,11 @@ class Variables$Query$GetChats {
 
   @override
   int get hashCode {
-    final l$last = last;
-    final l$before = before;
+    final l$first = first;
+    final l$after = after;
     return Object.hashAll([
-      _$data.containsKey('last') ? l$last : const {},
-      _$data.containsKey('before') ? l$before : const {},
+      _$data.containsKey('first') ? l$first : const {},
+      _$data.containsKey('after') ? l$after : const {},
     ]);
   }
 }
@@ -101,8 +101,8 @@ abstract class CopyWith$Variables$Query$GetChats<TRes> {
       _CopyWithStubImpl$Variables$Query$GetChats;
 
   TRes call({
-    int? last,
-    String? before,
+    int? first,
+    String? after,
   });
 }
 
@@ -120,13 +120,13 @@ class _CopyWithImpl$Variables$Query$GetChats<TRes>
   static const _undefined = <dynamic, dynamic>{};
 
   TRes call({
-    Object? last = _undefined,
-    Object? before = _undefined,
+    Object? first = _undefined,
+    Object? after = _undefined,
   }) =>
       _then(Variables$Query$GetChats._({
         ..._instance._$data,
-        if (last != _undefined) 'last': (last as int?),
-        if (before != _undefined) 'before': (before as String?),
+        if (first != _undefined) 'first': (first as int?),
+        if (after != _undefined) 'after': (after as String?),
       }));
 }
 
@@ -137,8 +137,8 @@ class _CopyWithStubImpl$Variables$Query$GetChats<TRes>
   TRes _res;
 
   call({
-    int? last,
-    String? before,
+    int? first,
+    String? after,
   }) =>
       _res;
 }
@@ -249,7 +249,7 @@ const documentNodeQueryGetChats = DocumentNode(definitions: [
     name: NameNode(value: 'GetChats'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'last')),
+        variable: VariableNode(name: NameNode(value: 'first')),
         type: NamedTypeNode(
           name: NameNode(value: 'Int'),
           isNonNull: false,
@@ -258,7 +258,7 @@ const documentNodeQueryGetChats = DocumentNode(definitions: [
         directives: [],
       ),
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'before')),
+        variable: VariableNode(name: NameNode(value: 'after')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
           isNonNull: false,
@@ -274,12 +274,12 @@ const documentNodeQueryGetChats = DocumentNode(definitions: [
         alias: null,
         arguments: [
           ArgumentNode(
-            name: NameNode(value: 'last'),
-            value: VariableNode(name: NameNode(value: 'last')),
+            name: NameNode(value: 'first'),
+            value: VariableNode(name: NameNode(value: 'first')),
           ),
           ArgumentNode(
-            name: NameNode(value: 'before'),
-            value: VariableNode(name: NameNode(value: 'before')),
+            name: NameNode(value: 'after'),
+            value: VariableNode(name: NameNode(value: 'after')),
           ),
         ],
         directives: [],

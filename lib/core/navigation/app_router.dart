@@ -1,7 +1,11 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
+import 'package:flutter_graphql_sample/core/di/service_locator.dart';
 import 'package:flutter_graphql_sample/features/auth/presentation/pages/login_screen.dart';
-import 'package:flutter_graphql_sample/screens/chats_screen.dart';
+import 'package:flutter_graphql_sample/features/chat/domain/use_cases/get_chats_use_case.dart';
+import 'package:flutter_graphql_sample/features/chat/presentation/bloc/chat_list_bloc.dart';
+import 'package:flutter_graphql_sample/features/chat/presentation/pages/chats_screen.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRouter {}
@@ -14,7 +18,12 @@ final appRouter = GoRouter(
     ),
     GoRoute(
       path: '/',
-      builder: (context, state) => const ChatsScreen(),
+      builder: (context, state) => BlocProvider(
+        create: (context) => ChatListBloc(
+          getChatsUseCase: serviceLocator.get<GetChatsUseCase>(),
+        )..add(GetChatsEvent()),
+        child: const ChatsScreen(),
+      ),
     ),
   ],
   redirect: (context, state) {

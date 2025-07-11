@@ -1,5 +1,5 @@
-query GetChats($last: Int, $before: String) {
-  getChats(last: $last, before: $before) {
+query GetChats($first: Int, $after: String) {
+  getChats(first: $first, after: $after) {
     edges {
       cursor
       node {

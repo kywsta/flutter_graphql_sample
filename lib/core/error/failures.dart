@@ -1,7 +1,7 @@
 import 'package:flutter_graphql_sample/core/error/exceptions.dart';
 
 class Failure {
-  final Object exception;
+  final dynamic exception;
   final StackTrace? stackTrace;
 
   final FailureInterpretation interpretation;

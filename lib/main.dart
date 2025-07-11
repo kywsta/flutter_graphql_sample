@@ -44,11 +44,9 @@ class AppView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerConfig: appRouter,
-      title: 'GraphQL Chat Test',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        useMaterial3: true,
-      ),
+      title: 'Flappy Chat',
+      theme: ThemeData.dark(useMaterial3: true),
+      debugShowCheckedModeBanner: false,
       builder: (context, child) {
         return child ?? const SizedBox.shrink();
       },

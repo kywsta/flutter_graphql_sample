@@ -1,5 +1,5 @@
-subscription TypingIndicator($typingIndicatorChatId2: String!) {
-  typingIndicator(chatId: $typingIndicatorChatId2) {
+subscription TypingIndicator($chatId: String!) {
+  typingIndicator(chatId: $chatId) {
     chatId
     isTyping
     userId

@@ -3,10 +3,9 @@ import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 
 class Variables$Subscription$TypingIndicator {
-  factory Variables$Subscription$TypingIndicator(
-          {required String typingIndicatorChatId2}) =>
+  factory Variables$Subscription$TypingIndicator({required String chatId}) =>
       Variables$Subscription$TypingIndicator._({
-        r'typingIndicatorChatId2': typingIndicatorChatId2,
+        r'chatId': chatId,
       });
 
   Variables$Subscription$TypingIndicator._(this._$data);
@@ -14,21 +13,19 @@ class Variables$Subscription$TypingIndicator {
   factory Variables$Subscription$TypingIndicator.fromJson(
       Map<String, dynamic> data) {
     final result$data = <String, dynamic>{};
-    final l$typingIndicatorChatId2 = data['typingIndicatorChatId2'];
-    result$data['typingIndicatorChatId2'] =
-        (l$typingIndicatorChatId2 as String);
+    final l$chatId = data['chatId'];
+    result$data['chatId'] = (l$chatId as String);
     return Variables$Subscription$TypingIndicator._(result$data);
   }
 
   Map<String, dynamic> _$data;
 
-  String get typingIndicatorChatId2 =>
-      (_$data['typingIndicatorChatId2'] as String);
+  String get chatId => (_$data['chatId'] as String);
 
   Map<String, dynamic> toJson() {
     final result$data = <String, dynamic>{};
-    final l$typingIndicatorChatId2 = typingIndicatorChatId2;
-    result$data['typingIndicatorChatId2'] = l$typingIndicatorChatId2;
+    final l$chatId = chatId;
+    result$data['chatId'] = l$chatId;
     return result$data;
   }
 
@@ -48,9 +45,9 @@ class Variables$Subscription$TypingIndicator {
         runtimeType != other.runtimeType) {
       return false;
     }
-    final l$typingIndicatorChatId2 = typingIndicatorChatId2;
-    final lOther$typingIndicatorChatId2 = other.typingIndicatorChatId2;
-    if (l$typingIndicatorChatId2 != lOther$typingIndicatorChatId2) {
+    final l$chatId = chatId;
+    final lOther$chatId = other.chatId;
+    if (l$chatId != lOther$chatId) {
       return false;
     }
     return true;
@@ -58,8 +55,8 @@ class Variables$Subscription$TypingIndicator {
 
   @override
   int get hashCode {
-    final l$typingIndicatorChatId2 = typingIndicatorChatId2;
-    return Object.hashAll([l$typingIndicatorChatId2]);
+    final l$chatId = chatId;
+    return Object.hashAll([l$chatId]);
   }
 }
 
@@ -72,7 +69,7 @@ abstract class CopyWith$Variables$Subscription$TypingIndicator<TRes> {
   factory CopyWith$Variables$Subscription$TypingIndicator.stub(TRes res) =
       _CopyWithStubImpl$Variables$Subscription$TypingIndicator;
 
-  TRes call({String? typingIndicatorChatId2});
+  TRes call({String? chatId});
 }
 
 class _CopyWithImpl$Variables$Subscription$TypingIndicator<TRes>
@@ -88,12 +85,11 @@ class _CopyWithImpl$Variables$Subscription$TypingIndicator<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? typingIndicatorChatId2 = _undefined}) =>
+  TRes call({Object? chatId = _undefined}) =>
       _then(Variables$Subscription$TypingIndicator._({
         ..._instance._$data,
-        if (typingIndicatorChatId2 != _undefined &&
-            typingIndicatorChatId2 != null)
-          'typingIndicatorChatId2': (typingIndicatorChatId2 as String),
+        if (chatId != _undefined && chatId != null)
+          'chatId': (chatId as String),
       }));
 }
 
@@ -103,7 +99,7 @@ class _CopyWithStubImpl$Variables$Subscription$TypingIndicator<TRes>
 
   TRes _res;
 
-  call({String? typingIndicatorChatId2}) => _res;
+  call({String? chatId}) => _res;
 }
 
 class Subscription$TypingIndicator {
@@ -220,7 +216,7 @@ const documentNodeSubscriptionTypingIndicator = DocumentNode(definitions: [
     name: NameNode(value: 'TypingIndicator'),
     variableDefinitions: [
       VariableDefinitionNode(
-        variable: VariableNode(name: NameNode(value: 'typingIndicatorChatId2')),
+        variable: VariableNode(name: NameNode(value: 'chatId')),
         type: NamedTypeNode(
           name: NameNode(value: 'String'),
           isNonNull: true,
@@ -237,8 +233,7 @@ const documentNodeSubscriptionTypingIndicator = DocumentNode(definitions: [
         arguments: [
           ArgumentNode(
             name: NameNode(value: 'chatId'),
-            value:
-                VariableNode(name: NameNode(value: 'typingIndicatorChatId2')),
+            value: VariableNode(name: NameNode(value: 'chatId')),
           )
         ],
         directives: [],

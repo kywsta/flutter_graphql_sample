@@ -25,11 +25,6 @@ class ChatListState extends Equatable {
   List<Object?> get props =>
       [status, chats, hasReachedMax, cursor, loadingFailure];
 
-  @override
-  String toString() {
-    return "ChatListState{status: $status, chats: ${chats.length}, hasReachedMax: $hasReachedMax, failure: ${loadingFailure?.toString()}}";
-  }
-
   ChatListState copyWith({
     ChatListStatus? status,
     List<Query$GetChats$getChats$edges$node>? chats,

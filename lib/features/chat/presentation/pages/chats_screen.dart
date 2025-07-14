@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
 import 'package:flutter_graphql_sample/core/di/service_locator.dart';
-import 'package:flutter_graphql_sample/core/navigation/app_router.dart';
 import 'package:flutter_graphql_sample/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/graphql/get_chats.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/bloc/chat_list_bloc.dart';
-import 'package:flutter_graphql_sample/features/chat/presentation/cubit/selected_chat_cubit.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/routes.dart';
 
 class ChatsScreen extends StatefulWidget {
@@ -19,7 +17,18 @@ class ChatsScreen extends StatefulWidget {
 class _ChatsScreenState extends State<ChatsScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  late ChatListState _state;
+  @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(_loadMoreListener);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,13 +66,11 @@ class _ChatsScreenState extends State<ChatsScreen> {
   Widget _buildBody() {
     return BlocBuilder<ChatListBloc, ChatListState>(
       builder: (context, state) {
-        _state = state;
-
         switch (state.status) {
           case ChatListStatus.initial:
             return _buildLoadingIndicator();
           case ChatListStatus.loaded:
-            return _buildChatList();
+            return _buildChatList(state);
         }
       },
     );
@@ -73,14 +80,14 @@ class _ChatsScreenState extends State<ChatsScreen> {
     return const Center(child: CircularProgressIndicator());
   }
 
-  Widget _buildChatList() {
+  Widget _buildChatList(ChatListState state) {
     return ListView.separated(
       controller: _scrollController,
       itemCount:
-          _state.hasReachedMax ? _state.chats.length : _state.chats.length + 1,
+          state.hasReachedMax ? state.chats.length : state.chats.length + 1,
       itemBuilder: (context, index) {
-        if (index < _state.chats.length) {
-          return _buildChatListItem(index);
+        if (index < state.chats.length) {
+          return _buildChatListItem(state.chats[index]);
         } else {
           return _buildLoadingMoreIndicator();
         }
@@ -89,8 +96,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
     );
   }
 
-  Widget _buildChatListItem(int index) {
-    final chat = _state.chats[index];
+  Widget _buildChatListItem(Query$GetChats$getChats$edges$node chat) {
     final chatName = chat.name;
     final isGroup = chat.isGroup;
     final memberCount = chat.memberIds.length;
@@ -186,6 +192,19 @@ class _ChatsScreenState extends State<ChatsScreen> {
     serviceLocator.get<AuthBloc>().add(LogoutEvent());
   }
 
+  void _loadMoreListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (!context.read<ChatListBloc>().state.hasReachedMax) {
+        context.read<ChatListBloc>().add(GetChatsEvent());
+      }
+    }
+  }
+
+  void _openChatDetail(Query$GetChats$getChats$edges$node chat) {
+    ChatRoutes.navigateToChatDetail(chat);
+  }
+
   void _showCreateChatDialog() {
     showDialog(
       context: context,
@@ -200,9 +219,5 @@ class _ChatsScreenState extends State<ChatsScreen> {
         ],
       ),
     );
-  }
-
-  void _openChatDetail(Query$GetChats$getChats$edges$node chat) {
-    ChatRoutes.navigateToChatDetail(chat);
   }
 }

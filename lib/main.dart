@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
 import 'package:flutter_graphql_sample/core/di/service_injector.dart';
 import 'package:flutter_graphql_sample/core/di/service_locator.dart';
@@ -13,6 +14,8 @@ void main() async {
 
   // Initialize GraphQL store
   await initHiveForFlutter();
+
+  await dotenv.load(fileName: ".env");
 
   initServiceLocator();
 

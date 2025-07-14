@@ -1,7 +1,7 @@
 class NetworkConstants {
   static const String _http = 'http://';
   static const String _ws = 'ws://';
-  static const String _base = '10.0.87.89:3000';
+  static const String _base = '10.0.87.17:3000';
   static const String baseUrl = '$_http$_base';
   static const String baseWsUrl = '$_ws$_base';
   static const String authApi = '$baseUrl/auth';

@@ -5,6 +5,7 @@ import 'package:flutter_graphql_sample/core/di/service_injector.dart';
 import 'package:flutter_graphql_sample/core/di/service_locator.dart';
 import 'package:flutter_graphql_sample/core/navigation/app_router.dart';
 import 'package:flutter_graphql_sample/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_graphql_sample/features/chat/presentation/cubit/selected_chat_cubit.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 void main() async {
@@ -26,6 +27,7 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => serviceLocator<AuthBloc>()),
+        BlocProvider(create: (context) => serviceLocator<SelectedChatCubit>()),
       ],
       child: ListenableBuilder(
         listenable: AuthSession(),
@@ -43,7 +45,7 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: appRouter,
+      routerConfig: AppRouter().router,
       title: 'Flappy Chat',
       theme: ThemeData.dark(useMaterial3: true),
       debugShowCheckedModeBanner: false,

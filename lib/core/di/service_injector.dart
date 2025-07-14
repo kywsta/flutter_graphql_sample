@@ -34,6 +34,7 @@ void _initUseCases() {
 
 void _initBlocs() {
   injectAuthBlocs();
+  injectChatBlocs();
 }
 
 void _initServices() {}

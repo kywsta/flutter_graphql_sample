@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
 import 'package:flutter_graphql_sample/core/di/service_locator.dart';
+import 'package:flutter_graphql_sample/core/navigation/app_router.dart';
 import 'package:flutter_graphql_sample/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_graphql_sample/features/chat/domain/graphql/get_chats.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/bloc/chat_list_bloc.dart';
+import 'package:flutter_graphql_sample/features/chat/presentation/cubit/selected_chat_cubit.dart';
+import 'package:flutter_graphql_sample/features/chat/presentation/routes.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -117,7 +121,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
         ],
       ),
       onTap: () {
-        // _openChatDetail(chat);
+        _openChatDetail(chat);
       },
     );
   }
@@ -198,11 +202,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
     );
   }
 
-  void _openChatDetail(Map<String, dynamic> chat) {
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(
-    //     builder: (context) => ChatDetailScreen(chat: chat),
-    //   ),
-    // );
+  void _openChatDetail(Query$GetChats$getChats$edges$node chat) {
+    ChatRoutes.navigateToChatDetail(chat);
   }
 }

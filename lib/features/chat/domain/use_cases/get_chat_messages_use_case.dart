@@ -8,7 +8,8 @@ class GetChatMessagesUseCase {
 
   GetChatMessagesUseCase({required this.messageRepository});
 
-  Future<Either<Query$GetChatMessages, Failure>> call(String chatId) async {
-    return await messageRepository.getChatMessages(chatId);
+  Future<Either<Query$GetChatMessages, Failure>> call(
+      String chatId, int last, String? before) async {
+    return await messageRepository.getChatMessages(chatId, last, before);
   }
 }

@@ -18,13 +18,7 @@ class ChatListBloc extends Bloc<ChatListEvent, ChatListState> {
 
   Future<void> _onGetChats(
       GetChatsEvent event, Emitter<ChatListState> emit) async {
-    if (state.hasReachedMax || state.isLoadingMore) return;
-
-    if (state.status == ChatListStatus.loaded) {
-      emit(state.copyWith(
-        isLoadingMore: true,
-      ));
-    }
+    if (state.hasReachedMax) return;
 
     final result = await getChatsUseCase(20, state.cursor);
 
@@ -38,13 +32,10 @@ class ChatListBloc extends Bloc<ChatListEvent, ChatListState> {
         chats: [...state.chats, ...newChats],
         hasReachedMax: hasReachedMax,
         cursor: cursor,
-        isLoadingMore: false,
       ));
     }, (failure) {
       emit(state.copyWith(
-        status: ChatListStatus.loaded,
-        failure: failure,
-        isLoadingMore: false,
+        loadingFailure: failure,
       ));
     });
   }

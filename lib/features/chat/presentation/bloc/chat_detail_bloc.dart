@@ -32,8 +32,8 @@ class ChatDetailBloc extends Bloc<ChatDetailEvent, ChatDetailState> {
       final oldMessages =
           data.getChatMessages.edges.map((e) => e.node).toList();
       final messages = <Query$GetChatMessages$getChatMessages$edges$node>[
-        ...oldMessages,
-        ...state.messages
+        ...state.messages,
+        ...oldMessages.reversed,
       ];
       final hasReachedMax = !data.getChatMessages.pageInfo.hasPreviousPage;
       final cursor = data.getChatMessages.pageInfo.startCursor;

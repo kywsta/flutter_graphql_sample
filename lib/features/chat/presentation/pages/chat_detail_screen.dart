@@ -19,28 +19,33 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   final TextEditingController _messageController = TextEditingController();
 
   @override
+  void initState() {
+    super.initState();
+
+    _scrollController.addListener(_loadMoreListener);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocListener<ChatDetailBloc, ChatDetailState>(
-      listener: (context, state) {
-        if (state.status == ChatDetailStatus.firstPageLoaded) {
-          WidgetsBinding.instance.addPostFrameCallback((_) {
-            _scrollToBottom();
-          });
-        }
-      },
-      child: Builder(builder: (context) {
-        final chat = context.watch<SelectedChatCubit>().state;
+    return Builder(builder: (context) {
+      final chat = context.watch<SelectedChatCubit>().state;
 
-        if (chat == null) {
-          return _buildChatNotSelectedView();
-        }
+      if (chat == null) {
+        return _buildChatNotSelectedView();
+      }
 
-        return Scaffold(
-          appBar: _buildAppBar(chat),
-          body: _buildBody(),
-        );
-      }),
-    );
+      return Scaffold(
+        appBar: _buildAppBar(chat),
+        body: _buildBody(),
+      );
+    });
   }
 
   Widget _buildChatNotSelectedView() {
@@ -81,14 +86,15 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   Widget _buildMessageArea() {
     return Expanded(
       child: Builder(builder: (context) {
-        final messages =
-            context.select((ChatDetailBloc bloc) => bloc.state.messages);
         final status =
             context.select((ChatDetailBloc bloc) => bloc.state.status);
 
         if (status == ChatDetailStatus.initial) {
           return _buildLoadingIndicator();
         }
+
+        final messages =
+            context.select((ChatDetailBloc bloc) => bloc.state.messages);
 
         return (messages.isEmpty)
             ? _buildEmptyMessagesView()
@@ -116,6 +122,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     return ListView.builder(
       controller: _scrollController,
       itemCount: messages.length,
+      reverse: true,
       itemBuilder: (context, index) {
         final message = messages[index];
         return _buildMessageBubble(message);
@@ -265,13 +272,12 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     Navigator.pop(context);
   }
 
-  void _scrollToBottom() {
-    if (_scrollController.hasClients) {
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeOut,
-      );
+  void _loadMoreListener() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      if (!context.read<ChatDetailBloc>().state.hasReachedMax) {
+        context.read<ChatDetailBloc>().add(GetChatMessages());
+      }
     }
   }
 

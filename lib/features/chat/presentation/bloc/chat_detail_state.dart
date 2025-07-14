@@ -8,10 +8,10 @@ enum ChatDetailStatus {
 
 class ChatDetailState extends Equatable {
   final Query$GetChats$getChats$edges$node chat;
+
   final ChatDetailStatus status;
   final List<Query$GetChatMessages$getChatMessages$edges$node> messages;
   final bool hasReachedMax;
-
   final String? cursor;
 
   final Failure? loadingMessagesFailure;

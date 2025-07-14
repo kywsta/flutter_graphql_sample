@@ -133,10 +133,13 @@ class _ChatsScreenState extends State<ChatsScreen> {
   }
 
   Widget _buildLoadingMoreIndicator() {
-    return const SizedBox(
-      height: 50,
-      child: Center(
-        child: CircularProgressIndicator(),
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: SizedBox.square(
+          dimension: 24,
+          child: CircularProgressIndicator(),
+        ),
       ),
     );
   }

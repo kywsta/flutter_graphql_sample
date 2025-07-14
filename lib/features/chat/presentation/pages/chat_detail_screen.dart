@@ -95,10 +95,12 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
 
         final messages =
             context.select((ChatDetailBloc bloc) => bloc.state.messages);
+        final hasReachedMax =
+            context.select((ChatDetailBloc bloc) => bloc.state.hasReachedMax);
 
         return (messages.isEmpty)
             ? _buildEmptyMessagesView()
-            : _buildMessagesList(messages);
+            : _buildMessagesList(messages, hasReachedMax);
       }),
     );
   }
@@ -118,15 +120,32 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   }
 
   Widget _buildMessagesList(
-      List<Query$GetChatMessages$getChatMessages$edges$node> messages) {
+      List<Query$GetChatMessages$getChatMessages$edges$node> messages,
+      bool hasReachedMax) {
     return ListView.builder(
       controller: _scrollController,
-      itemCount: messages.length,
+      itemCount: hasReachedMax ? messages.length : messages.length + 1,
       reverse: true,
       itemBuilder: (context, index) {
-        final message = messages[index];
-        return _buildMessageBubble(message);
+        if (index < messages.length) {
+          final message = messages[index];
+          return _buildMessageBubble(message);
+        } else {
+          return _buildLoadingMoreIndicator();
+        }
       },
+    );
+  }
+
+  Widget _buildLoadingMoreIndicator() {
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: SizedBox.square(
+          dimension: 24,
+          child: CircularProgressIndicator(),
+        ),
+      ),
     );
   }
 

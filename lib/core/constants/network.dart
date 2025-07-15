@@ -1,13 +1,15 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+
 class NetworkConstants {
   static const String _http = 'http://';
   static const String _ws = 'ws://';
-  static const String _base = '10.0.87.17:3000';
-  static const String baseUrl = '$_http$_base';
-  static const String baseWsUrl = '$_ws$_base';
-  static const String authApi = '$baseUrl/auth';
-  static const String graphqlEndpoint = '$baseUrl/graphql';
-  static const String graphqlSubscriptionEndpoint = '$baseWsUrl/graphql';
+  static final String _base = dotenv.env['SERVER_ADDRESS']!;
+  static final String baseUrl = '$_http$_base';
+  static final String baseWsUrl = '$_ws$_base';
+  static final String authApi = '$baseUrl/auth';
+  static final String graphqlEndpoint = '$baseUrl/graphql';
+  static final String graphqlSubscriptionEndpoint = '$baseWsUrl/graphql';
 
-  static const String login = '$authApi/login';
-  static const String register = '$authApi/register';
+  static final String login = '$authApi/login';
+  static final String register = '$authApi/register';
 }

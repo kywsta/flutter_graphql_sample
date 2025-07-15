@@ -295,6 +295,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     return Expanded(
       child: TextField(
         controller: _messageController,
+        autofocus: true,
         decoration: InputDecoration(
           hintText: 'Type a message...',
           border: OutlineInputBorder(
@@ -309,9 +310,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
         ),
         maxLines: null,
         textCapitalization: TextCapitalization.sentences,
-        enabled: !isSendingMessage,
         onChanged: _onTextChanged,
-        onSubmitted: (_) => _sendMessage(),
       ),
     );
   }
@@ -380,5 +379,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     if (content.isEmpty) return;
 
     context.read<ChatDetailBloc>().add(SendMessage(message: content));
+
+    _messageController.clear();
   }
 }

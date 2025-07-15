@@ -50,6 +50,14 @@ class ChatDetailBloc extends Bloc<ChatDetailEvent, ChatDetailState> {
     _initSubscriptions();
   }
 
+  @override
+  Future<void> close() {
+    _messageAddedSubscription?.cancel();
+    _typingIndicatorSubscription?.cancel();
+
+    return super.close();
+  }
+
   void _initSubscriptions() {
     _messageAddedSubscription?.cancel();
     _typingIndicatorSubscription?.cancel();

@@ -300,5 +300,10 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
 
   void _onTextChanged(String text) {}
 
-  void _sendMessage() {}
+  void _sendMessage() {
+    final content = _messageController.text.trim();
+    if (content.isEmpty) return;
+
+    context.read<ChatDetailBloc>().add(SendMessage(message: content));
+  }
 }

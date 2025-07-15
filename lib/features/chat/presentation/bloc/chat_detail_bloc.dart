@@ -101,12 +101,19 @@ class ChatDetailBloc extends Bloc<ChatDetailEvent, ChatDetailState> {
 
   Future<void> _onSendMessage(
       SendMessage event, Emitter<ChatDetailState> emit) async {
+    emit(state.copyWith(sendingMessage: true));
+
     final result = await sendMessageUseCase.call(chat.id, event.message);
 
     result.fold((data) {
-      emit(state.copyWith(status: ChatDetailStatus.loaded));
+      emit(state.copyWith(
+        sendingMessage: false,
+      ));
     }, (failure) {
-      emit(state.copyWith(sendMessageFailure: failure));
+      emit(state.copyWith(
+        sendMessageFailure: failure,
+        sendingMessage: false,
+      ));
     });
   }
 
@@ -119,8 +126,8 @@ class ChatDetailBloc extends Bloc<ChatDetailEvent, ChatDetailState> {
       MessageAdded event, Emitter<ChatDetailState> emit) async {
     final currentMessages = state.messages;
     final newMessages = <Fragment$message>[
-      ...currentMessages,
       event.message,
+      ...currentMessages,
     ];
     emit(state.copyWith(messages: newMessages));
   }

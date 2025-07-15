@@ -133,17 +133,6 @@ type Subscription {
 type TypingIndicator {
   chatId: String!
   userId: String!
-  username: String!
+  userName: String!
   isTyping: Boolean!
-}
-
-fragment message on Message {
-  id
-  chatId
-  userId
-  content
-  type
-  replyToId
-  createdAt
-  updatedAt
 }

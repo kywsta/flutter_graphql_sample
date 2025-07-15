@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
-import 'package:flutter_graphql_sample/core/graphql/schema.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/graphql/get_chats.graphql.dart';
+import 'package:flutter_graphql_sample/features/chat/domain/graphql/message_fragment.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/bloc/chat_detail_bloc.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/cubit/selected_chat_cubit.dart';
 import 'package:flutter_graphql_sample/utils/datetime_utils.dart';
@@ -18,6 +20,8 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   final ScrollController _scrollController = ScrollController();
   final TextEditingController _messageController = TextEditingController();
 
+  Timer? _typingTimer;
+
   @override
   void initState() {
     super.initState();
@@ -29,6 +33,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   void dispose() {
     _scrollController.dispose();
     _messageController.dispose();
+    _typingTimer?.cancel();
     super.dispose();
   }
 
@@ -78,30 +83,35 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
 
   Widget _buildBody() {
     return Column(children: [
-      _buildMessageArea(),
+      Expanded(child: _buildMessageArea()),
       _buildMessageInput(),
     ]);
   }
 
   Widget _buildMessageArea() {
-    return Expanded(
-      child: Builder(builder: (context) {
-        final status =
-            context.select((ChatDetailBloc bloc) => bloc.state.status);
+    return Column(
+      children: [
+        Expanded(
+          child: Builder(builder: (context) {
+            final status =
+                context.select((ChatDetailBloc bloc) => bloc.state.status);
 
-        if (status == ChatDetailStatus.initial) {
-          return _buildLoadingIndicator();
-        }
+            if (status == ChatDetailStatus.initial) {
+              return _buildLoadingIndicator();
+            }
 
-        final messages =
-            context.select((ChatDetailBloc bloc) => bloc.state.messages);
-        final hasReachedMax =
-            context.select((ChatDetailBloc bloc) => bloc.state.hasReachedMax);
+            final messages =
+                context.select((ChatDetailBloc bloc) => bloc.state.messages);
+            final hasReachedMax = context
+                .select((ChatDetailBloc bloc) => bloc.state.hasReachedMax);
 
-        return (messages.isEmpty)
-            ? _buildEmptyMessagesView()
-            : _buildMessagesList(messages, hasReachedMax);
-      }),
+            return (messages.isEmpty)
+                ? _buildEmptyMessagesView()
+                : _buildMessagesList(messages, hasReachedMax);
+          }),
+        ),
+        _buildTypingIndicator(),
+      ],
     );
   }
 
@@ -133,18 +143,6 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
           return _buildLoadingMoreIndicator();
         }
       },
-    );
-  }
-
-  Widget _buildLoadingMoreIndicator() {
-    return const Center(
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 16),
-        child: SizedBox.square(
-          dimension: 24,
-          child: CircularProgressIndicator(),
-        ),
-      ),
     );
   }
 
@@ -197,6 +195,64 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
         ),
       ),
     );
+  }
+
+  Widget _buildLoadingMoreIndicator() {
+    return const Center(
+      child: Padding(
+        padding: EdgeInsets.symmetric(vertical: 16),
+        child: SizedBox.square(
+          dimension: 24,
+          child: CircularProgressIndicator(),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTypingIndicator() {
+    return Builder(builder: (context) {
+      final typingUsers =
+          context.select((ChatDetailBloc bloc) => bloc.state.typingUsers);
+
+      if (typingUsers.isEmpty) return const SizedBox.shrink();
+
+      final typingUsernames = typingUsers.map((e) => e.userName).toList();
+      String typingText;
+
+      if (typingUsernames.length == 1) {
+        typingText = '${typingUsernames.first} is typing...';
+      } else if (typingUsernames.length == 2) {
+        typingText =
+            '${typingUsernames[0]} and ${typingUsernames[1]} are typing...';
+      } else {
+        typingText = '${typingUsernames.length} people are typing...';
+      }
+
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+        child: Row(
+          children: [
+            const SizedBox(
+              width: 16,
+              height: 16,
+              child: CircularProgressIndicator(
+                strokeWidth: 2,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.grey),
+              ),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              typingText,
+              style: TextStyle(
+                color: Colors.grey[600],
+                fontStyle: FontStyle.italic,
+                fontSize: 14,
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 
   Widget _buildMessageInput() {
@@ -298,7 +354,26 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     }
   }
 
-  void _onTextChanged(String text) {}
+  void _onTextChanged(String text) {
+    if (text.isNotEmpty) {
+      _setTypingStatus(true);
+
+      // Cancel previous timer
+      _typingTimer?.cancel();
+
+      // Set timer to stop typing after 2 seconds of inactivity
+      _typingTimer = Timer(const Duration(seconds: 2), () {
+        _setTypingStatus(false);
+      });
+    } else {
+      _setTypingStatus(false);
+      _typingTimer?.cancel();
+    }
+  }
+
+  void _setTypingStatus(bool isTyping) {
+    context.read<ChatDetailBloc>().add(SetTypingStatus(isTyping: isTyping));
+  }
 
   void _sendMessage() {
     final content = _messageController.text.trim();

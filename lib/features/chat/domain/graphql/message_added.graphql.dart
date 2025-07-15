@@ -1,5 +1,5 @@
-import '../../../../core/graphql/schema.graphql.dart';
 import 'dart:async';
+import 'message_fragment.graphql.dart';
 import 'package:gql/ast.dart';
 import 'package:graphql/client.dart' as graphql;
 

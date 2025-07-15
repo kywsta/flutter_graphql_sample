@@ -3,6 +3,6 @@ subscription TypingIndicator($chatId: String!) {
     chatId
     isTyping
     userId
-    username
+    userName
   }
 }

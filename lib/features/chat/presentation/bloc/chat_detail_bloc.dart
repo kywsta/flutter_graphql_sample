@@ -1,11 +1,13 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
 import 'package:flutter_graphql_sample/core/error/failures.dart';
-import 'package:flutter_graphql_sample/core/graphql/schema.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/graphql/get_chats.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/graphql/message_added.graphql.dart';
+import 'package:flutter_graphql_sample/features/chat/domain/graphql/message_fragment.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/graphql/typing_indicator.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/use_cases/get_chat_messages_use_case.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/use_cases/send_message_use_case.dart';
@@ -133,5 +135,41 @@ class ChatDetailBloc extends Bloc<ChatDetailEvent, ChatDetailState> {
   }
 
   Future<void> _onTypingIndicatorReceived(
-      TypingIndicatorReceived event, Emitter<ChatDetailState> emit) async {}
+      TypingIndicatorReceived event, Emitter<ChatDetailState> emit) async {
+    final userId = event.typingIndicator.userId;
+
+    if (userId == AuthSession().userId) return;
+
+    final isTyping = event.typingIndicator.isTyping;
+    final userName = event.typingIndicator.userName;
+
+    final typingUsers = [...state.typingUsers];
+
+    if (isTyping) {
+      if (typingUsers.any((e) => e.userId == userId)) {
+        typingUsers.firstWhere((e) => e.userId == userId).lastUpdate =
+            DateTime.now();
+      } else {
+        typingUsers.add(TypingUser(
+            userId: userId, userName: userName, lastUpdate: DateTime.now()));
+      }
+
+      Timer(const Duration(seconds: 3), () {
+        final lastUpdate =
+            typingUsers.firstWhereOrNull((e) => e.userId == userId)?.lastUpdate;
+        if (lastUpdate != null &&
+            DateTime.now().difference(lastUpdate).inSeconds >= 3) {
+          typingUsers.removeWhere((e) => e.userId == userId);
+        }
+      });
+    } else {
+      typingUsers.removeWhere((e) => e.userId == userId);
+    }
+
+    emit(
+      state.copyWith(
+        typingUsers: typingUsers,
+      ),
+    );
+  }
 }

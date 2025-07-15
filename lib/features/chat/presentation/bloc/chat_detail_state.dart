@@ -6,6 +6,18 @@ enum ChatDetailStatus {
   loaded,
 }
 
+class TypingUser {
+  final String userId;
+  final String userName;
+  DateTime lastUpdate;
+
+  TypingUser({
+    required this.userId,
+    required this.userName,
+    required this.lastUpdate,
+  });
+}
+
 class ChatDetailState extends Equatable {
   final Query$GetChats$getChats$edges$node chat;
 
@@ -19,7 +31,7 @@ class ChatDetailState extends Equatable {
   final bool sendingMessage;
   final Failure? sendMessageFailure;
 
-  final List<Subscription$TypingIndicator$typingIndicator> typingUsers;
+  final List<TypingUser> typingUsers;
 
   const ChatDetailState({
     required this.chat,
@@ -54,7 +66,7 @@ class ChatDetailState extends Equatable {
     Failure? loadingMessagesFailure,
     bool? sendingMessage,
     Failure? sendMessageFailure,
-    List<Subscription$TypingIndicator$typingIndicator>? typingUsers,
+    List<TypingUser>? typingUsers,
   }) {
     return ChatDetailState(
       chat: chat,

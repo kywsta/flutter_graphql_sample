@@ -260,7 +260,7 @@ const documentNodeSubscriptionTypingIndicator = DocumentNode(definitions: [
             selectionSet: null,
           ),
           FieldNode(
-            name: NameNode(value: 'username'),
+            name: NameNode(value: 'userName'),
             alias: null,
             arguments: [],
             directives: [],
@@ -366,7 +366,7 @@ class Subscription$TypingIndicator$typingIndicator {
     required this.chatId,
     required this.isTyping,
     required this.userId,
-    required this.username,
+    required this.userName,
     this.$__typename = 'TypingIndicator',
   });
 
@@ -375,13 +375,13 @@ class Subscription$TypingIndicator$typingIndicator {
     final l$chatId = json['chatId'];
     final l$isTyping = json['isTyping'];
     final l$userId = json['userId'];
-    final l$username = json['username'];
+    final l$userName = json['userName'];
     final l$$__typename = json['__typename'];
     return Subscription$TypingIndicator$typingIndicator(
       chatId: (l$chatId as String),
       isTyping: (l$isTyping as bool),
       userId: (l$userId as String),
-      username: (l$username as String),
+      userName: (l$userName as String),
       $__typename: (l$$__typename as String),
     );
   }
@@ -392,7 +392,7 @@ class Subscription$TypingIndicator$typingIndicator {
 
   final String userId;
 
-  final String username;
+  final String userName;
 
   final String $__typename;
 
@@ -404,8 +404,8 @@ class Subscription$TypingIndicator$typingIndicator {
     _resultData['isTyping'] = l$isTyping;
     final l$userId = userId;
     _resultData['userId'] = l$userId;
-    final l$username = username;
-    _resultData['username'] = l$username;
+    final l$userName = userName;
+    _resultData['userName'] = l$userName;
     final l$$__typename = $__typename;
     _resultData['__typename'] = l$$__typename;
     return _resultData;
@@ -416,13 +416,13 @@ class Subscription$TypingIndicator$typingIndicator {
     final l$chatId = chatId;
     final l$isTyping = isTyping;
     final l$userId = userId;
-    final l$username = username;
+    final l$userName = userName;
     final l$$__typename = $__typename;
     return Object.hashAll([
       l$chatId,
       l$isTyping,
       l$userId,
-      l$username,
+      l$userName,
       l$$__typename,
     ]);
   }
@@ -451,9 +451,9 @@ class Subscription$TypingIndicator$typingIndicator {
     if (l$userId != lOther$userId) {
       return false;
     }
-    final l$username = username;
-    final lOther$username = other.username;
-    if (l$username != lOther$username) {
+    final l$userName = userName;
+    final lOther$userName = other.userName;
+    if (l$userName != lOther$userName) {
       return false;
     }
     final l$$__typename = $__typename;
@@ -488,7 +488,7 @@ abstract class CopyWith$Subscription$TypingIndicator$typingIndicator<TRes> {
     String? chatId,
     bool? isTyping,
     String? userId,
-    String? username,
+    String? userName,
     String? $__typename,
   });
 }
@@ -510,7 +510,7 @@ class _CopyWithImpl$Subscription$TypingIndicator$typingIndicator<TRes>
     Object? chatId = _undefined,
     Object? isTyping = _undefined,
     Object? userId = _undefined,
-    Object? username = _undefined,
+    Object? userName = _undefined,
     Object? $__typename = _undefined,
   }) =>
       _then(Subscription$TypingIndicator$typingIndicator(
@@ -523,9 +523,9 @@ class _CopyWithImpl$Subscription$TypingIndicator$typingIndicator<TRes>
         userId: userId == _undefined || userId == null
             ? _instance.userId
             : (userId as String),
-        username: username == _undefined || username == null
-            ? _instance.username
-            : (username as String),
+        userName: userName == _undefined || userName == null
+            ? _instance.userName
+            : (userName as String),
         $__typename: $__typename == _undefined || $__typename == null
             ? _instance.$__typename
             : ($__typename as String),
@@ -542,7 +542,7 @@ class _CopyWithStubImpl$Subscription$TypingIndicator$typingIndicator<TRes>
     String? chatId,
     bool? isTyping,
     String? userId,
-    String? username,
+    String? userName,
     String? $__typename,
   }) =>
       _res;

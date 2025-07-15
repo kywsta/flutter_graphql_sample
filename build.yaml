@@ -6,6 +6,8 @@ targets:
           clients:
             - graphql
           addTypename: true
+          addTypenameExcludedPaths: 
+            - subscription
           scalars:
             DateTimeISO: 
               type: DateTime

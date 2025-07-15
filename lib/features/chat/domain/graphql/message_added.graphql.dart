@@ -104,42 +104,28 @@ class _CopyWithStubImpl$Variables$Subscription$MessageAdded<TRes>
 }
 
 class Subscription$MessageAdded {
-  Subscription$MessageAdded({
-    required this.messageAdded,
-    this.$__typename = 'Subscription',
-  });
+  Subscription$MessageAdded({required this.messageAdded});
 
   factory Subscription$MessageAdded.fromJson(Map<String, dynamic> json) {
     final l$messageAdded = json['messageAdded'];
-    final l$$__typename = json['__typename'];
     return Subscription$MessageAdded(
-      messageAdded:
-          Fragment$message.fromJson((l$messageAdded as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
+        messageAdded: Fragment$message.fromJson(
+            (l$messageAdded as Map<String, dynamic>)));
   }
 
   final Fragment$message messageAdded;
-
-  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$messageAdded = messageAdded;
     _resultData['messageAdded'] = l$messageAdded.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$messageAdded = messageAdded;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$messageAdded,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$messageAdded]);
   }
 
   @override
@@ -154,11 +140,6 @@ class Subscription$MessageAdded {
     final l$messageAdded = messageAdded;
     final lOther$messageAdded = other.messageAdded;
     if (l$messageAdded != lOther$messageAdded) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -183,10 +164,7 @@ abstract class CopyWith$Subscription$MessageAdded<TRes> {
   factory CopyWith$Subscription$MessageAdded.stub(TRes res) =
       _CopyWithStubImpl$Subscription$MessageAdded;
 
-  TRes call({
-    Fragment$message? messageAdded,
-    String? $__typename,
-  });
+  TRes call({Fragment$message? messageAdded});
   CopyWith$Fragment$message<TRes> get messageAdded;
 }
 
@@ -203,18 +181,11 @@ class _CopyWithImpl$Subscription$MessageAdded<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({
-    Object? messageAdded = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
-      _then(Subscription$MessageAdded(
-        messageAdded: messageAdded == _undefined || messageAdded == null
-            ? _instance.messageAdded
-            : (messageAdded as Fragment$message),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
+  TRes call({Object? messageAdded = _undefined}) => _then(
+      Subscription$MessageAdded(
+          messageAdded: messageAdded == _undefined || messageAdded == null
+              ? _instance.messageAdded
+              : (messageAdded as Fragment$message)));
 
   CopyWith$Fragment$message<TRes> get messageAdded {
     final local$messageAdded = _instance.messageAdded;
@@ -229,11 +200,7 @@ class _CopyWithStubImpl$Subscription$MessageAdded<TRes>
 
   TRes _res;
 
-  call({
-    Fragment$message? messageAdded,
-    String? $__typename,
-  }) =>
-      _res;
+  call({Fragment$message? messageAdded}) => _res;
 
   CopyWith$Fragment$message<TRes> get messageAdded =>
       CopyWith$Fragment$message.stub(_res);
@@ -279,14 +246,7 @@ const documentNodeSubscriptionMessageAdded = DocumentNode(definitions: [
             selectionSet: null,
           ),
         ]),
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
+      )
     ]),
   ),
   fragmentDefinitionmessage,

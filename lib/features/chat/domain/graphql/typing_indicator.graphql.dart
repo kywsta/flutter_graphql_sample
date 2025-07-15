@@ -103,42 +103,28 @@ class _CopyWithStubImpl$Variables$Subscription$TypingIndicator<TRes>
 }
 
 class Subscription$TypingIndicator {
-  Subscription$TypingIndicator({
-    required this.typingIndicator,
-    this.$__typename = 'Subscription',
-  });
+  Subscription$TypingIndicator({required this.typingIndicator});
 
   factory Subscription$TypingIndicator.fromJson(Map<String, dynamic> json) {
     final l$typingIndicator = json['typingIndicator'];
-    final l$$__typename = json['__typename'];
     return Subscription$TypingIndicator(
-      typingIndicator: Subscription$TypingIndicator$typingIndicator.fromJson(
-          (l$typingIndicator as Map<String, dynamic>)),
-      $__typename: (l$$__typename as String),
-    );
+        typingIndicator: Subscription$TypingIndicator$typingIndicator.fromJson(
+            (l$typingIndicator as Map<String, dynamic>)));
   }
 
   final Subscription$TypingIndicator$typingIndicator typingIndicator;
-
-  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$typingIndicator = typingIndicator;
     _resultData['typingIndicator'] = l$typingIndicator.toJson();
-    final l$$__typename = $__typename;
-    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$typingIndicator = typingIndicator;
-    final l$$__typename = $__typename;
-    return Object.hashAll([
-      l$typingIndicator,
-      l$$__typename,
-    ]);
+    return Object.hashAll([l$typingIndicator]);
   }
 
   @override
@@ -153,11 +139,6 @@ class Subscription$TypingIndicator {
     final l$typingIndicator = typingIndicator;
     final lOther$typingIndicator = other.typingIndicator;
     if (l$typingIndicator != lOther$typingIndicator) {
-      return false;
-    }
-    final l$$__typename = $__typename;
-    final lOther$$__typename = other.$__typename;
-    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -182,10 +163,7 @@ abstract class CopyWith$Subscription$TypingIndicator<TRes> {
   factory CopyWith$Subscription$TypingIndicator.stub(TRes res) =
       _CopyWithStubImpl$Subscription$TypingIndicator;
 
-  TRes call({
-    Subscription$TypingIndicator$typingIndicator? typingIndicator,
-    String? $__typename,
-  });
+  TRes call({Subscription$TypingIndicator$typingIndicator? typingIndicator});
   CopyWith$Subscription$TypingIndicator$typingIndicator<TRes>
       get typingIndicator;
 }
@@ -203,19 +181,13 @@ class _CopyWithImpl$Subscription$TypingIndicator<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({
-    Object? typingIndicator = _undefined,
-    Object? $__typename = _undefined,
-  }) =>
+  TRes call({Object? typingIndicator = _undefined}) =>
       _then(Subscription$TypingIndicator(
-        typingIndicator: typingIndicator == _undefined ||
-                typingIndicator == null
-            ? _instance.typingIndicator
-            : (typingIndicator as Subscription$TypingIndicator$typingIndicator),
-        $__typename: $__typename == _undefined || $__typename == null
-            ? _instance.$__typename
-            : ($__typename as String),
-      ));
+          typingIndicator:
+              typingIndicator == _undefined || typingIndicator == null
+                  ? _instance.typingIndicator
+                  : (typingIndicator
+                      as Subscription$TypingIndicator$typingIndicator)));
 
   CopyWith$Subscription$TypingIndicator$typingIndicator<TRes>
       get typingIndicator {
@@ -231,11 +203,7 @@ class _CopyWithStubImpl$Subscription$TypingIndicator<TRes>
 
   TRes _res;
 
-  call({
-    Subscription$TypingIndicator$typingIndicator? typingIndicator,
-    String? $__typename,
-  }) =>
-      _res;
+  call({Subscription$TypingIndicator$typingIndicator? typingIndicator}) => _res;
 
   CopyWith$Subscription$TypingIndicator$typingIndicator<TRes>
       get typingIndicator =>
@@ -306,14 +274,7 @@ const documentNodeSubscriptionTypingIndicator = DocumentNode(definitions: [
             selectionSet: null,
           ),
         ]),
-      ),
-      FieldNode(
-        name: NameNode(value: '__typename'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: null,
-      ),
+      )
     ]),
   ),
 ]);

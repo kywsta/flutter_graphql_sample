@@ -14,12 +14,13 @@ abstract class Repository {
     }
   }
 
-  Future<Either<T, Failure>> onGql<T>(Future<QueryResult<T>> Function() fn) async {
+  Future<Either<T, Failure>> onGql<T>(
+      Future<QueryResult<T>> Function() fn) async {
     try {
       final result = await fn();
 
       if (result.exception != null) {
-        throw GQLException(result.exception!);
+        throw result.exception!;
       }
 
       if (!result.isLoading && result.parsedData == null) {
@@ -36,7 +37,7 @@ abstract class Repository {
   Stream<T> onGqlStream<T>(Stream<QueryResult<T>> Function() fn) {
     return fn().map((result) {
       if (result.exception != null) {
-        throw GQLException(result.exception!);
+        throw result.exception!;
       }
 
       if (!result.isLoading && result.parsedData == null) {

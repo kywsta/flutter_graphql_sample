@@ -53,7 +53,12 @@ class GraphQLService {
 
     _client = GraphQLClient(
       link: link,
-      cache: GraphQLCache(store: InMemoryStore()),
+      cache: GraphQLCache(store: HiveStore()),
+      defaultPolicies: DefaultPolicies(
+        query: Policies(
+          fetch: FetchPolicy.noCache,
+        ),
+      ),
     );
   }
 

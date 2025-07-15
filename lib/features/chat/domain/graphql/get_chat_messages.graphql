@@ -3,12 +3,7 @@ query GetChatMessages($chatId: String!, $before: String, $last: Int) {
     edges {
       cursor
       node {
-        id
-        type
-        userId
-        content
-        createdAt
-        replyToId
+        ...message
       }
     }
     pageInfo {

@@ -144,28 +144,42 @@ class _CopyWithStubImpl$Variables$Query$GetChats<TRes>
 }
 
 class Query$GetChats {
-  Query$GetChats({required this.getChats});
+  Query$GetChats({
+    required this.getChats,
+    this.$__typename = 'Query',
+  });
 
   factory Query$GetChats.fromJson(Map<String, dynamic> json) {
     final l$getChats = json['getChats'];
+    final l$$__typename = json['__typename'];
     return Query$GetChats(
-        getChats: Query$GetChats$getChats.fromJson(
-            (l$getChats as Map<String, dynamic>)));
+      getChats: Query$GetChats$getChats.fromJson(
+          (l$getChats as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final Query$GetChats$getChats getChats;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$getChats = getChats;
     _resultData['getChats'] = l$getChats.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$getChats = getChats;
-    return Object.hashAll([l$getChats]);
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$getChats,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -179,6 +193,11 @@ class Query$GetChats {
     final l$getChats = getChats;
     final lOther$getChats = other.getChats;
     if (l$getChats != lOther$getChats) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -202,7 +221,10 @@ abstract class CopyWith$Query$GetChats<TRes> {
   factory CopyWith$Query$GetChats.stub(TRes res) =
       _CopyWithStubImpl$Query$GetChats;
 
-  TRes call({Query$GetChats$getChats? getChats});
+  TRes call({
+    Query$GetChats$getChats? getChats,
+    String? $__typename,
+  });
   CopyWith$Query$GetChats$getChats<TRes> get getChats;
 }
 
@@ -219,10 +241,18 @@ class _CopyWithImpl$Query$GetChats<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? getChats = _undefined}) => _then(Query$GetChats(
-      getChats: getChats == _undefined || getChats == null
-          ? _instance.getChats
-          : (getChats as Query$GetChats$getChats)));
+  TRes call({
+    Object? getChats = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetChats(
+        getChats: getChats == _undefined || getChats == null
+            ? _instance.getChats
+            : (getChats as Query$GetChats$getChats),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   CopyWith$Query$GetChats$getChats<TRes> get getChats {
     final local$getChats = _instance.getChats;
@@ -237,7 +267,11 @@ class _CopyWithStubImpl$Query$GetChats<TRes>
 
   TRes _res;
 
-  call({Query$GetChats$getChats? getChats}) => _res;
+  call({
+    Query$GetChats$getChats? getChats,
+    String? $__typename,
+  }) =>
+      _res;
 
   CopyWith$Query$GetChats$getChats<TRes> get getChats =>
       CopyWith$Query$GetChats$getChats.stub(_res);
@@ -345,7 +379,21 @@ const documentNodeQueryGetChats = DocumentNode(definitions: [
                     directives: [],
                     selectionSet: null,
                   ),
+                  FieldNode(
+                    name: NameNode(value: '__typename'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
                 ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
               ),
             ]),
           ),
@@ -383,6 +431,13 @@ const documentNodeQueryGetChats = DocumentNode(definitions: [
                 directives: [],
                 selectionSet: null,
               ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
             ]),
           ),
           FieldNode(
@@ -392,8 +447,22 @@ const documentNodeQueryGetChats = DocumentNode(definitions: [
             directives: [],
             selectionSet: null,
           ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
         ]),
-      )
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
     ]),
   ),
 ]);
@@ -532,12 +601,14 @@ class Query$GetChats$getChats {
     required this.edges,
     required this.pageInfo,
     required this.totalCount,
+    this.$__typename = 'ChatConnection',
   });
 
   factory Query$GetChats$getChats.fromJson(Map<String, dynamic> json) {
     final l$edges = json['edges'];
     final l$pageInfo = json['pageInfo'];
     final l$totalCount = json['totalCount'];
+    final l$$__typename = json['__typename'];
     return Query$GetChats$getChats(
       edges: (l$edges as List<dynamic>)
           .map((e) => Query$GetChats$getChats$edges.fromJson(
@@ -546,6 +617,7 @@ class Query$GetChats$getChats {
       pageInfo: Query$GetChats$getChats$pageInfo.fromJson(
           (l$pageInfo as Map<String, dynamic>)),
       totalCount: (l$totalCount as num).toDouble(),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -555,6 +627,8 @@ class Query$GetChats$getChats {
 
   final double totalCount;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$edges = edges;
@@ -563,6 +637,8 @@ class Query$GetChats$getChats {
     _resultData['pageInfo'] = l$pageInfo.toJson();
     final l$totalCount = totalCount;
     _resultData['totalCount'] = l$totalCount;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -571,10 +647,12 @@ class Query$GetChats$getChats {
     final l$edges = edges;
     final l$pageInfo = pageInfo;
     final l$totalCount = totalCount;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       Object.hashAll(l$edges.map((v) => v)),
       l$pageInfo,
       l$totalCount,
+      l$$__typename,
     ]);
   }
 
@@ -608,6 +686,11 @@ class Query$GetChats$getChats {
     if (l$totalCount != lOther$totalCount) {
       return false;
     }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
     return true;
   }
 }
@@ -633,6 +716,7 @@ abstract class CopyWith$Query$GetChats$getChats<TRes> {
     List<Query$GetChats$getChats$edges>? edges,
     Query$GetChats$getChats$pageInfo? pageInfo,
     double? totalCount,
+    String? $__typename,
   });
   TRes edges(
       Iterable<Query$GetChats$getChats$edges> Function(
@@ -660,6 +744,7 @@ class _CopyWithImpl$Query$GetChats$getChats<TRes>
     Object? edges = _undefined,
     Object? pageInfo = _undefined,
     Object? totalCount = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$GetChats$getChats(
         edges: edges == _undefined || edges == null
@@ -671,6 +756,9 @@ class _CopyWithImpl$Query$GetChats$getChats<TRes>
         totalCount: totalCount == _undefined || totalCount == null
             ? _instance.totalCount
             : (totalCount as double),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
   TRes edges(
@@ -703,6 +791,7 @@ class _CopyWithStubImpl$Query$GetChats$getChats<TRes>
     List<Query$GetChats$getChats$edges>? edges,
     Query$GetChats$getChats$pageInfo? pageInfo,
     double? totalCount,
+    String? $__typename,
   }) =>
       _res;
 
@@ -716,15 +805,18 @@ class Query$GetChats$getChats$edges {
   Query$GetChats$getChats$edges({
     required this.cursor,
     required this.node,
+    this.$__typename = 'ChatEdge',
   });
 
   factory Query$GetChats$getChats$edges.fromJson(Map<String, dynamic> json) {
     final l$cursor = json['cursor'];
     final l$node = json['node'];
+    final l$$__typename = json['__typename'];
     return Query$GetChats$getChats$edges(
       cursor: (l$cursor as String),
       node: Query$GetChats$getChats$edges$node.fromJson(
           (l$node as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -732,12 +824,16 @@ class Query$GetChats$getChats$edges {
 
   final Query$GetChats$getChats$edges$node node;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$cursor = cursor;
     _resultData['cursor'] = l$cursor;
     final l$node = node;
     _resultData['node'] = l$node.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -745,9 +841,11 @@ class Query$GetChats$getChats$edges {
   int get hashCode {
     final l$cursor = cursor;
     final l$node = node;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       l$cursor,
       l$node,
+      l$$__typename,
     ]);
   }
 
@@ -768,6 +866,11 @@ class Query$GetChats$getChats$edges {
     final l$node = node;
     final lOther$node = other.node;
     if (l$node != lOther$node) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -795,6 +898,7 @@ abstract class CopyWith$Query$GetChats$getChats$edges<TRes> {
   TRes call({
     String? cursor,
     Query$GetChats$getChats$edges$node? node,
+    String? $__typename,
   });
   CopyWith$Query$GetChats$getChats$edges$node<TRes> get node;
 }
@@ -815,6 +919,7 @@ class _CopyWithImpl$Query$GetChats$getChats$edges<TRes>
   TRes call({
     Object? cursor = _undefined,
     Object? node = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$GetChats$getChats$edges(
         cursor: cursor == _undefined || cursor == null
@@ -823,6 +928,9 @@ class _CopyWithImpl$Query$GetChats$getChats$edges<TRes>
         node: node == _undefined || node == null
             ? _instance.node
             : (node as Query$GetChats$getChats$edges$node),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
   CopyWith$Query$GetChats$getChats$edges$node<TRes> get node {
@@ -841,6 +949,7 @@ class _CopyWithStubImpl$Query$GetChats$getChats$edges<TRes>
   call({
     String? cursor,
     Query$GetChats$getChats$edges$node? node,
+    String? $__typename,
   }) =>
       _res;
 
@@ -856,6 +965,7 @@ class Query$GetChats$getChats$edges$node {
     required this.isGroup,
     required this.createdAt,
     required this.updatedAt,
+    this.$__typename = 'Chat',
   });
 
   factory Query$GetChats$getChats$edges$node.fromJson(
@@ -866,6 +976,7 @@ class Query$GetChats$getChats$edges$node {
     final l$isGroup = json['isGroup'];
     final l$createdAt = json['createdAt'];
     final l$updatedAt = json['updatedAt'];
+    final l$$__typename = json['__typename'];
     return Query$GetChats$getChats$edges$node(
       id: (l$id as String),
       name: (l$name as String),
@@ -874,6 +985,7 @@ class Query$GetChats$getChats$edges$node {
       isGroup: (l$isGroup as bool),
       createdAt: DateTime.parse((l$createdAt as String)),
       updatedAt: DateTime.parse((l$updatedAt as String)),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -889,6 +1001,8 @@ class Query$GetChats$getChats$edges$node {
 
   final DateTime updatedAt;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$id = id;
@@ -903,6 +1017,8 @@ class Query$GetChats$getChats$edges$node {
     _resultData['createdAt'] = l$createdAt.toIso8601String();
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -914,6 +1030,7 @@ class Query$GetChats$getChats$edges$node {
     final l$isGroup = isGroup;
     final l$createdAt = createdAt;
     final l$updatedAt = updatedAt;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$name,
@@ -921,6 +1038,7 @@ class Query$GetChats$getChats$edges$node {
       l$isGroup,
       l$createdAt,
       l$updatedAt,
+      l$$__typename,
     ]);
   }
 
@@ -970,6 +1088,11 @@ class Query$GetChats$getChats$edges$node {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
     return true;
   }
 }
@@ -1000,6 +1123,7 @@ abstract class CopyWith$Query$GetChats$getChats$edges$node<TRes> {
     bool? isGroup,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? $__typename,
   });
 }
 
@@ -1023,6 +1147,7 @@ class _CopyWithImpl$Query$GetChats$getChats$edges$node<TRes>
     Object? isGroup = _undefined,
     Object? createdAt = _undefined,
     Object? updatedAt = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$GetChats$getChats$edges$node(
         id: id == _undefined || id == null ? _instance.id : (id as String),
@@ -1041,6 +1166,9 @@ class _CopyWithImpl$Query$GetChats$getChats$edges$node<TRes>
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
@@ -1057,6 +1185,7 @@ class _CopyWithStubImpl$Query$GetChats$getChats$edges$node<TRes>
     bool? isGroup,
     DateTime? createdAt,
     DateTime? updatedAt,
+    String? $__typename,
   }) =>
       _res;
 }
@@ -1067,6 +1196,7 @@ class Query$GetChats$getChats$pageInfo {
     this.endCursor,
     required this.hasNextPage,
     required this.hasPreviousPage,
+    this.$__typename = 'PageInfo',
   });
 
   factory Query$GetChats$getChats$pageInfo.fromJson(Map<String, dynamic> json) {
@@ -1074,11 +1204,13 @@ class Query$GetChats$getChats$pageInfo {
     final l$endCursor = json['endCursor'];
     final l$hasNextPage = json['hasNextPage'];
     final l$hasPreviousPage = json['hasPreviousPage'];
+    final l$$__typename = json['__typename'];
     return Query$GetChats$getChats$pageInfo(
       startCursor: (l$startCursor as String?),
       endCursor: (l$endCursor as String?),
       hasNextPage: (l$hasNextPage as bool),
       hasPreviousPage: (l$hasPreviousPage as bool),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -1090,6 +1222,8 @@ class Query$GetChats$getChats$pageInfo {
 
   final bool hasPreviousPage;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$startCursor = startCursor;
@@ -1100,6 +1234,8 @@ class Query$GetChats$getChats$pageInfo {
     _resultData['hasNextPage'] = l$hasNextPage;
     final l$hasPreviousPage = hasPreviousPage;
     _resultData['hasPreviousPage'] = l$hasPreviousPage;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -1109,11 +1245,13 @@ class Query$GetChats$getChats$pageInfo {
     final l$endCursor = endCursor;
     final l$hasNextPage = hasNextPage;
     final l$hasPreviousPage = hasPreviousPage;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       l$startCursor,
       l$endCursor,
       l$hasNextPage,
       l$hasPreviousPage,
+      l$$__typename,
     ]);
   }
 
@@ -1146,6 +1284,11 @@ class Query$GetChats$getChats$pageInfo {
     if (l$hasPreviousPage != lOther$hasPreviousPage) {
       return false;
     }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
     return true;
   }
 }
@@ -1173,6 +1316,7 @@ abstract class CopyWith$Query$GetChats$getChats$pageInfo<TRes> {
     String? endCursor,
     bool? hasNextPage,
     bool? hasPreviousPage,
+    String? $__typename,
   });
 }
 
@@ -1194,6 +1338,7 @@ class _CopyWithImpl$Query$GetChats$getChats$pageInfo<TRes>
     Object? endCursor = _undefined,
     Object? hasNextPage = _undefined,
     Object? hasPreviousPage = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$GetChats$getChats$pageInfo(
         startCursor: startCursor == _undefined
@@ -1209,6 +1354,9 @@ class _CopyWithImpl$Query$GetChats$getChats$pageInfo<TRes>
             hasPreviousPage == _undefined || hasPreviousPage == null
                 ? _instance.hasPreviousPage
                 : (hasPreviousPage as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
@@ -1223,6 +1371,7 @@ class _CopyWithStubImpl$Query$GetChats$getChats$pageInfo<TRes>
     String? endCursor,
     bool? hasNextPage,
     bool? hasPreviousPage,
+    String? $__typename,
   }) =>
       _res;
 }

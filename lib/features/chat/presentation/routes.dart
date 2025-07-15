@@ -5,6 +5,10 @@ import 'package:flutter_graphql_sample/core/navigation/app_router.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/graphql/get_chats.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/use_cases/get_chat_messages_use_case.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/use_cases/get_chats_use_case.dart';
+import 'package:flutter_graphql_sample/features/chat/domain/use_cases/send_message_use_case.dart';
+import 'package:flutter_graphql_sample/features/chat/domain/use_cases/set_typing_status_use_case.dart';
+import 'package:flutter_graphql_sample/features/chat/domain/use_cases/subscribe_message_added_use_case.dart';
+import 'package:flutter_graphql_sample/features/chat/domain/use_cases/subscribe_typing_indicator_use_case.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/bloc/chat_detail_bloc.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/bloc/chat_list_bloc.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/cubit/selected_chat_cubit.dart';
@@ -33,6 +37,12 @@ class ChatRoutes {
         create: (context) => ChatDetailBloc(
           chat: context.read<SelectedChatCubit>().state!,
           getChatMessagesUseCase: serviceLocator.get<GetChatMessagesUseCase>(),
+          sendMessageUseCase: serviceLocator.get<SendMessageUseCase>(),
+          setTypingStatusUseCase: serviceLocator.get<SetTypingStatusUseCase>(),
+          subscribeMessageAddedUseCase:
+              serviceLocator.get<SubscribeMessageAddedUseCase>(),
+          subscribeTypingIndicatorUseCase:
+              serviceLocator.get<SubscribeTypingIndicatorUseCase>(),
         )..add(GetChatMessages()),
         child: const ChatDetailScreen(),
       ),

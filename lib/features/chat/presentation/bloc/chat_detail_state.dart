@@ -10,13 +10,16 @@ class ChatDetailState extends Equatable {
   final Query$GetChats$getChats$edges$node chat;
 
   final ChatDetailStatus status;
-  final List<Query$GetChatMessages$getChatMessages$edges$node> messages;
+  final List<Fragment$message> messages;
   final bool hasReachedMax;
   final String? cursor;
 
   final Failure? loadingMessagesFailure;
 
   final bool sendingMessage;
+  final Failure? sendMessageFailure;
+
+  final List<Subscription$TypingIndicator$typingIndicator> typingUsers;
 
   const ChatDetailState({
     required this.chat,
@@ -26,6 +29,8 @@ class ChatDetailState extends Equatable {
     this.cursor,
     this.loadingMessagesFailure,
     this.sendingMessage = false,
+    this.sendMessageFailure,
+    this.typingUsers = const [],
   });
 
   @override
@@ -36,23 +41,32 @@ class ChatDetailState extends Equatable {
         hasReachedMax,
         cursor,
         loadingMessagesFailure,
-        sendingMessage
+        sendingMessage,
+        sendMessageFailure,
+        typingUsers,
       ];
 
   ChatDetailState copyWith({
     ChatDetailStatus? status,
-    List<Query$GetChatMessages$getChatMessages$edges$node>? messages,
+    List<Fragment$message>? messages,
     bool? hasReachedMax,
     String? cursor,
     Failure? loadingMessagesFailure,
+    bool? sendingMessage,
+    Failure? sendMessageFailure,
+    List<Subscription$TypingIndicator$typingIndicator>? typingUsers,
   }) {
     return ChatDetailState(
-        chat: chat,
-        status: status ?? this.status,
-        messages: messages ?? this.messages,
-        hasReachedMax: hasReachedMax ?? this.hasReachedMax,
-        cursor: cursor ?? this.cursor,
-        loadingMessagesFailure:
-            loadingMessagesFailure ?? this.loadingMessagesFailure);
+      chat: chat,
+      status: status ?? this.status,
+      messages: messages ?? this.messages,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+      cursor: cursor ?? this.cursor,
+      loadingMessagesFailure:
+          loadingMessagesFailure ?? this.loadingMessagesFailure,
+      sendingMessage: sendingMessage ?? this.sendingMessage,
+      sendMessageFailure: sendMessageFailure ?? this.sendMessageFailure,
+      typingUsers: typingUsers ?? this.typingUsers,
+    );
   }
 }

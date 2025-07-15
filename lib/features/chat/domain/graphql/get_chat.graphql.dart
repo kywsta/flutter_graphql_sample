@@ -99,30 +99,43 @@ class _CopyWithStubImpl$Variables$Query$GetChat<TRes>
 }
 
 class Query$GetChat {
-  Query$GetChat({this.getChat});
+  Query$GetChat({
+    this.getChat,
+    this.$__typename = 'Query',
+  });
 
   factory Query$GetChat.fromJson(Map<String, dynamic> json) {
     final l$getChat = json['getChat'];
+    final l$$__typename = json['__typename'];
     return Query$GetChat(
-        getChat: l$getChat == null
-            ? null
-            : Query$GetChat$getChat.fromJson(
-                (l$getChat as Map<String, dynamic>)));
+      getChat: l$getChat == null
+          ? null
+          : Query$GetChat$getChat.fromJson((l$getChat as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final Query$GetChat$getChat? getChat;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$getChat = getChat;
     _resultData['getChat'] = l$getChat?.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$getChat = getChat;
-    return Object.hashAll([l$getChat]);
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$getChat,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -136,6 +149,11 @@ class Query$GetChat {
     final l$getChat = getChat;
     final lOther$getChat = other.getChat;
     if (l$getChat != lOther$getChat) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -158,7 +176,10 @@ abstract class CopyWith$Query$GetChat<TRes> {
   factory CopyWith$Query$GetChat.stub(TRes res) =
       _CopyWithStubImpl$Query$GetChat;
 
-  TRes call({Query$GetChat$getChat? getChat});
+  TRes call({
+    Query$GetChat$getChat? getChat,
+    String? $__typename,
+  });
   CopyWith$Query$GetChat$getChat<TRes> get getChat;
 }
 
@@ -175,10 +196,18 @@ class _CopyWithImpl$Query$GetChat<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? getChat = _undefined}) => _then(Query$GetChat(
-      getChat: getChat == _undefined
-          ? _instance.getChat
-          : (getChat as Query$GetChat$getChat?)));
+  TRes call({
+    Object? getChat = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Query$GetChat(
+        getChat: getChat == _undefined
+            ? _instance.getChat
+            : (getChat as Query$GetChat$getChat?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   CopyWith$Query$GetChat$getChat<TRes> get getChat {
     final local$getChat = _instance.getChat;
@@ -195,7 +224,11 @@ class _CopyWithStubImpl$Query$GetChat<TRes>
 
   TRes _res;
 
-  call({Query$GetChat$getChat? getChat}) => _res;
+  call({
+    Query$GetChat$getChat? getChat,
+    String? $__typename,
+  }) =>
+      _res;
 
   CopyWith$Query$GetChat$getChat<TRes> get getChat =>
       CopyWith$Query$GetChat$getChat.stub(_res);
@@ -271,8 +304,22 @@ const documentNodeQueryGetChat = DocumentNode(definitions: [
             directives: [],
             selectionSet: null,
           ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
         ]),
-      )
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
     ]),
   ),
 ]);
@@ -414,6 +461,7 @@ class Query$GetChat$getChat {
     this.lastMessageId,
     required this.id,
     required this.updatedAt,
+    this.$__typename = 'Chat',
   });
 
   factory Query$GetChat$getChat.fromJson(Map<String, dynamic> json) {
@@ -423,6 +471,7 @@ class Query$GetChat$getChat {
     final l$lastMessageId = json['lastMessageId'];
     final l$id = json['id'];
     final l$updatedAt = json['updatedAt'];
+    final l$$__typename = json['__typename'];
     return Query$GetChat$getChat(
       name: (l$name as String),
       memberIds:
@@ -431,6 +480,7 @@ class Query$GetChat$getChat {
       lastMessageId: (l$lastMessageId as String?),
       id: (l$id as String),
       updatedAt: DateTime.parse((l$updatedAt as String)),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -446,6 +496,8 @@ class Query$GetChat$getChat {
 
   final DateTime updatedAt;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$name = name;
@@ -460,6 +512,8 @@ class Query$GetChat$getChat {
     _resultData['id'] = l$id;
     final l$updatedAt = updatedAt;
     _resultData['updatedAt'] = l$updatedAt.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -471,6 +525,7 @@ class Query$GetChat$getChat {
     final l$lastMessageId = lastMessageId;
     final l$id = id;
     final l$updatedAt = updatedAt;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       l$name,
       Object.hashAll(l$memberIds.map((v) => v)),
@@ -478,6 +533,7 @@ class Query$GetChat$getChat {
       l$lastMessageId,
       l$id,
       l$updatedAt,
+      l$$__typename,
     ]);
   }
 
@@ -526,6 +582,11 @@ class Query$GetChat$getChat {
     if (l$updatedAt != lOther$updatedAt) {
       return false;
     }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
     return true;
   }
 }
@@ -554,6 +615,7 @@ abstract class CopyWith$Query$GetChat$getChat<TRes> {
     String? lastMessageId,
     String? id,
     DateTime? updatedAt,
+    String? $__typename,
   });
 }
 
@@ -577,6 +639,7 @@ class _CopyWithImpl$Query$GetChat$getChat<TRes>
     Object? lastMessageId = _undefined,
     Object? id = _undefined,
     Object? updatedAt = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$GetChat$getChat(
         name: name == _undefined || name == null
@@ -595,6 +658,9 @@ class _CopyWithImpl$Query$GetChat$getChat<TRes>
         updatedAt: updatedAt == _undefined || updatedAt == null
             ? _instance.updatedAt
             : (updatedAt as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
@@ -611,6 +677,7 @@ class _CopyWithStubImpl$Query$GetChat$getChat<TRes>
     String? lastMessageId,
     String? id,
     DateTime? updatedAt,
+    String? $__typename,
   }) =>
       _res;
 }

@@ -11,12 +11,18 @@ import 'package:flutter_graphql_sample/features/chat/domain/repositories/message
 class MessageRepositoryImpl extends MessageRepository {
   final MessageRemoteDataSource messageRemoteDataSource;
 
+  final Map<String, Stream<Subscription$MessageAdded>> _messageAddedStreams =
+      {};
+  final Map<String, Stream<Subscription$TypingIndicator>>
+      _typingIndicatorStreams = {};
+
   MessageRepositoryImpl({required this.messageRemoteDataSource});
 
   @override
   Future<Either<Query$GetChatMessages, Failure>> getChatMessages(
       String chatId, int last, String? before) {
-    return onGql(() => messageRemoteDataSource.getChatMessages(chatId, last, before));
+    return onGql(
+        () => messageRemoteDataSource.getChatMessages(chatId, last, before));
   }
 
   @override
@@ -34,13 +40,21 @@ class MessageRepositoryImpl extends MessageRepository {
 
   @override
   Stream<Subscription$MessageAdded> subscribeMessageAdded(String chatId) {
-    // TODO: implement subscribeMessageAdded
-    throw UnimplementedError();
+    if (!_messageAddedStreams.containsKey(chatId)) {
+      _messageAddedStreams[chatId] = onGqlStream(
+              () => messageRemoteDataSource.subscribeMessageAdded(chatId))
+          .asBroadcastStream();
+    }
+    return _messageAddedStreams[chatId]!;
   }
 
   @override
   Stream<Subscription$TypingIndicator> subscribeTypingIndicator(String chatId) {
-    // TODO: implement subscribeTypingIndicator
-    throw UnimplementedError();
+    if (!_typingIndicatorStreams.containsKey(chatId)) {
+      _typingIndicatorStreams[chatId] = onGqlStream(
+              () => messageRemoteDataSource.subscribeTypingIndicator(chatId))
+          .asBroadcastStream();
+    }
+    return _typingIndicatorStreams[chatId]!;
   }
 }

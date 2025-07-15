@@ -165,28 +165,42 @@ class _CopyWithStubImpl$Variables$Query$GetChatMessages<TRes>
 }
 
 class Query$GetChatMessages {
-  Query$GetChatMessages({required this.getChatMessages});
+  Query$GetChatMessages({
+    required this.getChatMessages,
+    this.$__typename = 'Query',
+  });
 
   factory Query$GetChatMessages.fromJson(Map<String, dynamic> json) {
     final l$getChatMessages = json['getChatMessages'];
+    final l$$__typename = json['__typename'];
     return Query$GetChatMessages(
-        getChatMessages: Query$GetChatMessages$getChatMessages.fromJson(
-            (l$getChatMessages as Map<String, dynamic>)));
+      getChatMessages: Query$GetChatMessages$getChatMessages.fromJson(
+          (l$getChatMessages as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final Query$GetChatMessages$getChatMessages getChatMessages;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$getChatMessages = getChatMessages;
     _resultData['getChatMessages'] = l$getChatMessages.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$getChatMessages = getChatMessages;
-    return Object.hashAll([l$getChatMessages]);
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$getChatMessages,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -200,6 +214,11 @@ class Query$GetChatMessages {
     final l$getChatMessages = getChatMessages;
     final lOther$getChatMessages = other.getChatMessages;
     if (l$getChatMessages != lOther$getChatMessages) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -223,7 +242,10 @@ abstract class CopyWith$Query$GetChatMessages<TRes> {
   factory CopyWith$Query$GetChatMessages.stub(TRes res) =
       _CopyWithStubImpl$Query$GetChatMessages;
 
-  TRes call({Query$GetChatMessages$getChatMessages? getChatMessages});
+  TRes call({
+    Query$GetChatMessages$getChatMessages? getChatMessages,
+    String? $__typename,
+  });
   CopyWith$Query$GetChatMessages$getChatMessages<TRes> get getChatMessages;
 }
 
@@ -240,12 +262,19 @@ class _CopyWithImpl$Query$GetChatMessages<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? getChatMessages = _undefined}) =>
+  TRes call({
+    Object? getChatMessages = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
       _then(Query$GetChatMessages(
-          getChatMessages: getChatMessages == _undefined ||
-                  getChatMessages == null
-              ? _instance.getChatMessages
-              : (getChatMessages as Query$GetChatMessages$getChatMessages)));
+        getChatMessages:
+            getChatMessages == _undefined || getChatMessages == null
+                ? _instance.getChatMessages
+                : (getChatMessages as Query$GetChatMessages$getChatMessages),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   CopyWith$Query$GetChatMessages$getChatMessages<TRes> get getChatMessages {
     final local$getChatMessages = _instance.getChatMessages;
@@ -260,7 +289,11 @@ class _CopyWithStubImpl$Query$GetChatMessages<TRes>
 
   TRes _res;
 
-  call({Query$GetChatMessages$getChatMessages? getChatMessages}) => _res;
+  call({
+    Query$GetChatMessages$getChatMessages? getChatMessages,
+    String? $__typename,
+  }) =>
+      _res;
 
   CopyWith$Query$GetChatMessages$getChatMessages<TRes> get getChatMessages =>
       CopyWith$Query$GetChatMessages$getChatMessages.stub(_res);
@@ -339,49 +372,25 @@ const documentNodeQueryGetChatMessages = DocumentNode(definitions: [
                 arguments: [],
                 directives: [],
                 selectionSet: SelectionSetNode(selections: [
-                  FieldNode(
-                    name: NameNode(value: 'id'),
-                    alias: null,
-                    arguments: [],
+                  FragmentSpreadNode(
+                    name: NameNode(value: 'message'),
                     directives: [],
-                    selectionSet: null,
                   ),
                   FieldNode(
-                    name: NameNode(value: 'type'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'userId'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'content'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'createdAt'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  FieldNode(
-                    name: NameNode(value: 'replyToId'),
+                    name: NameNode(value: '__typename'),
                     alias: null,
                     arguments: [],
                     directives: [],
                     selectionSet: null,
                   ),
                 ]),
+              ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
               ),
             ]),
           ),
@@ -419,6 +428,13 @@ const documentNodeQueryGetChatMessages = DocumentNode(definitions: [
                 directives: [],
                 selectionSet: null,
               ),
+              FieldNode(
+                name: NameNode(value: '__typename'),
+                alias: null,
+                arguments: [],
+                directives: [],
+                selectionSet: null,
+              ),
             ]),
           ),
           FieldNode(
@@ -428,10 +444,25 @@ const documentNodeQueryGetChatMessages = DocumentNode(definitions: [
             directives: [],
             selectionSet: null,
           ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
         ]),
-      )
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
     ]),
   ),
+  fragmentDefinitionmessage,
 ]);
 Query$GetChatMessages _parserFn$Query$GetChatMessages(
         Map<String, dynamic> data) =>
@@ -572,6 +603,7 @@ class Query$GetChatMessages$getChatMessages {
     required this.edges,
     required this.pageInfo,
     required this.totalCount,
+    this.$__typename = 'MessageConnection',
   });
 
   factory Query$GetChatMessages$getChatMessages.fromJson(
@@ -579,6 +611,7 @@ class Query$GetChatMessages$getChatMessages {
     final l$edges = json['edges'];
     final l$pageInfo = json['pageInfo'];
     final l$totalCount = json['totalCount'];
+    final l$$__typename = json['__typename'];
     return Query$GetChatMessages$getChatMessages(
       edges: (l$edges as List<dynamic>)
           .map((e) => Query$GetChatMessages$getChatMessages$edges.fromJson(
@@ -587,6 +620,7 @@ class Query$GetChatMessages$getChatMessages {
       pageInfo: Query$GetChatMessages$getChatMessages$pageInfo.fromJson(
           (l$pageInfo as Map<String, dynamic>)),
       totalCount: (l$totalCount as num).toDouble(),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -596,6 +630,8 @@ class Query$GetChatMessages$getChatMessages {
 
   final double totalCount;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$edges = edges;
@@ -604,6 +640,8 @@ class Query$GetChatMessages$getChatMessages {
     _resultData['pageInfo'] = l$pageInfo.toJson();
     final l$totalCount = totalCount;
     _resultData['totalCount'] = l$totalCount;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -612,10 +650,12 @@ class Query$GetChatMessages$getChatMessages {
     final l$edges = edges;
     final l$pageInfo = pageInfo;
     final l$totalCount = totalCount;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       Object.hashAll(l$edges.map((v) => v)),
       l$pageInfo,
       l$totalCount,
+      l$$__typename,
     ]);
   }
 
@@ -650,6 +690,11 @@ class Query$GetChatMessages$getChatMessages {
     if (l$totalCount != lOther$totalCount) {
       return false;
     }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
     return true;
   }
 }
@@ -677,6 +722,7 @@ abstract class CopyWith$Query$GetChatMessages$getChatMessages<TRes> {
     List<Query$GetChatMessages$getChatMessages$edges>? edges,
     Query$GetChatMessages$getChatMessages$pageInfo? pageInfo,
     double? totalCount,
+    String? $__typename,
   });
   TRes edges(
       Iterable<Query$GetChatMessages$getChatMessages$edges> Function(
@@ -704,6 +750,7 @@ class _CopyWithImpl$Query$GetChatMessages$getChatMessages<TRes>
     Object? edges = _undefined,
     Object? pageInfo = _undefined,
     Object? totalCount = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$GetChatMessages$getChatMessages(
         edges: edges == _undefined || edges == null
@@ -715,6 +762,9 @@ class _CopyWithImpl$Query$GetChatMessages$getChatMessages<TRes>
         totalCount: totalCount == _undefined || totalCount == null
             ? _instance.totalCount
             : (totalCount as double),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
   TRes edges(
@@ -747,6 +797,7 @@ class _CopyWithStubImpl$Query$GetChatMessages$getChatMessages<TRes>
     List<Query$GetChatMessages$getChatMessages$edges>? edges,
     Query$GetChatMessages$getChatMessages$pageInfo? pageInfo,
     double? totalCount,
+    String? $__typename,
   }) =>
       _res;
 
@@ -760,22 +811,26 @@ class Query$GetChatMessages$getChatMessages$edges {
   Query$GetChatMessages$getChatMessages$edges({
     required this.cursor,
     required this.node,
+    this.$__typename = 'MessageEdge',
   });
 
   factory Query$GetChatMessages$getChatMessages$edges.fromJson(
       Map<String, dynamic> json) {
     final l$cursor = json['cursor'];
     final l$node = json['node'];
+    final l$$__typename = json['__typename'];
     return Query$GetChatMessages$getChatMessages$edges(
       cursor: (l$cursor as String),
-      node: Query$GetChatMessages$getChatMessages$edges$node.fromJson(
-          (l$node as Map<String, dynamic>)),
+      node: Fragment$message.fromJson((l$node as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
     );
   }
 
   final String cursor;
 
-  final Query$GetChatMessages$getChatMessages$edges$node node;
+  final Fragment$message node;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
@@ -783,6 +838,8 @@ class Query$GetChatMessages$getChatMessages$edges {
     _resultData['cursor'] = l$cursor;
     final l$node = node;
     _resultData['node'] = l$node.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -790,9 +847,11 @@ class Query$GetChatMessages$getChatMessages$edges {
   int get hashCode {
     final l$cursor = cursor;
     final l$node = node;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       l$cursor,
       l$node,
+      l$$__typename,
     ]);
   }
 
@@ -813,6 +872,11 @@ class Query$GetChatMessages$getChatMessages$edges {
     final l$node = node;
     final lOther$node = other.node;
     if (l$node != lOther$node) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -840,9 +904,10 @@ abstract class CopyWith$Query$GetChatMessages$getChatMessages$edges<TRes> {
 
   TRes call({
     String? cursor,
-    Query$GetChatMessages$getChatMessages$edges$node? node,
+    Fragment$message? node,
+    String? $__typename,
   });
-  CopyWith$Query$GetChatMessages$getChatMessages$edges$node<TRes> get node;
+  CopyWith$Fragment$message<TRes> get node;
 }
 
 class _CopyWithImpl$Query$GetChatMessages$getChatMessages$edges<TRes>
@@ -861,6 +926,7 @@ class _CopyWithImpl$Query$GetChatMessages$getChatMessages$edges<TRes>
   TRes call({
     Object? cursor = _undefined,
     Object? node = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$GetChatMessages$getChatMessages$edges(
         cursor: cursor == _undefined || cursor == null
@@ -868,13 +934,15 @@ class _CopyWithImpl$Query$GetChatMessages$getChatMessages$edges<TRes>
             : (cursor as String),
         node: node == _undefined || node == null
             ? _instance.node
-            : (node as Query$GetChatMessages$getChatMessages$edges$node),
+            : (node as Fragment$message),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 
-  CopyWith$Query$GetChatMessages$getChatMessages$edges$node<TRes> get node {
+  CopyWith$Fragment$message<TRes> get node {
     final local$node = _instance.node;
-    return CopyWith$Query$GetChatMessages$getChatMessages$edges$node(
-        local$node, (e) => call(node: e));
+    return CopyWith$Fragment$message(local$node, (e) => call(node: e));
   }
 }
 
@@ -886,218 +954,13 @@ class _CopyWithStubImpl$Query$GetChatMessages$getChatMessages$edges<TRes>
 
   call({
     String? cursor,
-    Query$GetChatMessages$getChatMessages$edges$node? node,
+    Fragment$message? node,
+    String? $__typename,
   }) =>
       _res;
 
-  CopyWith$Query$GetChatMessages$getChatMessages$edges$node<TRes> get node =>
-      CopyWith$Query$GetChatMessages$getChatMessages$edges$node.stub(_res);
-}
-
-class Query$GetChatMessages$getChatMessages$edges$node {
-  Query$GetChatMessages$getChatMessages$edges$node({
-    required this.id,
-    required this.type,
-    required this.userId,
-    required this.content,
-    required this.createdAt,
-    this.replyToId,
-  });
-
-  factory Query$GetChatMessages$getChatMessages$edges$node.fromJson(
-      Map<String, dynamic> json) {
-    final l$id = json['id'];
-    final l$type = json['type'];
-    final l$userId = json['userId'];
-    final l$content = json['content'];
-    final l$createdAt = json['createdAt'];
-    final l$replyToId = json['replyToId'];
-    return Query$GetChatMessages$getChatMessages$edges$node(
-      id: (l$id as String),
-      type: fromJson$Enum$MessageType((l$type as String)),
-      userId: (l$userId as String),
-      content: (l$content as String),
-      createdAt: DateTime.parse((l$createdAt as String)),
-      replyToId: (l$replyToId as String?),
-    );
-  }
-
-  final String id;
-
-  final Enum$MessageType type;
-
-  final String userId;
-
-  final String content;
-
-  final DateTime createdAt;
-
-  final String? replyToId;
-
-  Map<String, dynamic> toJson() {
-    final _resultData = <String, dynamic>{};
-    final l$id = id;
-    _resultData['id'] = l$id;
-    final l$type = type;
-    _resultData['type'] = toJson$Enum$MessageType(l$type);
-    final l$userId = userId;
-    _resultData['userId'] = l$userId;
-    final l$content = content;
-    _resultData['content'] = l$content;
-    final l$createdAt = createdAt;
-    _resultData['createdAt'] = l$createdAt.toIso8601String();
-    final l$replyToId = replyToId;
-    _resultData['replyToId'] = l$replyToId;
-    return _resultData;
-  }
-
-  @override
-  int get hashCode {
-    final l$id = id;
-    final l$type = type;
-    final l$userId = userId;
-    final l$content = content;
-    final l$createdAt = createdAt;
-    final l$replyToId = replyToId;
-    return Object.hashAll([
-      l$id,
-      l$type,
-      l$userId,
-      l$content,
-      l$createdAt,
-      l$replyToId,
-    ]);
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) {
-      return true;
-    }
-    if (other is! Query$GetChatMessages$getChatMessages$edges$node ||
-        runtimeType != other.runtimeType) {
-      return false;
-    }
-    final l$id = id;
-    final lOther$id = other.id;
-    if (l$id != lOther$id) {
-      return false;
-    }
-    final l$type = type;
-    final lOther$type = other.type;
-    if (l$type != lOther$type) {
-      return false;
-    }
-    final l$userId = userId;
-    final lOther$userId = other.userId;
-    if (l$userId != lOther$userId) {
-      return false;
-    }
-    final l$content = content;
-    final lOther$content = other.content;
-    if (l$content != lOther$content) {
-      return false;
-    }
-    final l$createdAt = createdAt;
-    final lOther$createdAt = other.createdAt;
-    if (l$createdAt != lOther$createdAt) {
-      return false;
-    }
-    final l$replyToId = replyToId;
-    final lOther$replyToId = other.replyToId;
-    if (l$replyToId != lOther$replyToId) {
-      return false;
-    }
-    return true;
-  }
-}
-
-extension UtilityExtension$Query$GetChatMessages$getChatMessages$edges$node
-    on Query$GetChatMessages$getChatMessages$edges$node {
-  CopyWith$Query$GetChatMessages$getChatMessages$edges$node<
-          Query$GetChatMessages$getChatMessages$edges$node>
-      get copyWith => CopyWith$Query$GetChatMessages$getChatMessages$edges$node(
-            this,
-            (i) => i,
-          );
-}
-
-abstract class CopyWith$Query$GetChatMessages$getChatMessages$edges$node<TRes> {
-  factory CopyWith$Query$GetChatMessages$getChatMessages$edges$node(
-    Query$GetChatMessages$getChatMessages$edges$node instance,
-    TRes Function(Query$GetChatMessages$getChatMessages$edges$node) then,
-  ) = _CopyWithImpl$Query$GetChatMessages$getChatMessages$edges$node;
-
-  factory CopyWith$Query$GetChatMessages$getChatMessages$edges$node.stub(
-          TRes res) =
-      _CopyWithStubImpl$Query$GetChatMessages$getChatMessages$edges$node;
-
-  TRes call({
-    String? id,
-    Enum$MessageType? type,
-    String? userId,
-    String? content,
-    DateTime? createdAt,
-    String? replyToId,
-  });
-}
-
-class _CopyWithImpl$Query$GetChatMessages$getChatMessages$edges$node<TRes>
-    implements CopyWith$Query$GetChatMessages$getChatMessages$edges$node<TRes> {
-  _CopyWithImpl$Query$GetChatMessages$getChatMessages$edges$node(
-    this._instance,
-    this._then,
-  );
-
-  final Query$GetChatMessages$getChatMessages$edges$node _instance;
-
-  final TRes Function(Query$GetChatMessages$getChatMessages$edges$node) _then;
-
-  static const _undefined = <dynamic, dynamic>{};
-
-  TRes call({
-    Object? id = _undefined,
-    Object? type = _undefined,
-    Object? userId = _undefined,
-    Object? content = _undefined,
-    Object? createdAt = _undefined,
-    Object? replyToId = _undefined,
-  }) =>
-      _then(Query$GetChatMessages$getChatMessages$edges$node(
-        id: id == _undefined || id == null ? _instance.id : (id as String),
-        type: type == _undefined || type == null
-            ? _instance.type
-            : (type as Enum$MessageType),
-        userId: userId == _undefined || userId == null
-            ? _instance.userId
-            : (userId as String),
-        content: content == _undefined || content == null
-            ? _instance.content
-            : (content as String),
-        createdAt: createdAt == _undefined || createdAt == null
-            ? _instance.createdAt
-            : (createdAt as DateTime),
-        replyToId: replyToId == _undefined
-            ? _instance.replyToId
-            : (replyToId as String?),
-      ));
-}
-
-class _CopyWithStubImpl$Query$GetChatMessages$getChatMessages$edges$node<TRes>
-    implements CopyWith$Query$GetChatMessages$getChatMessages$edges$node<TRes> {
-  _CopyWithStubImpl$Query$GetChatMessages$getChatMessages$edges$node(this._res);
-
-  TRes _res;
-
-  call({
-    String? id,
-    Enum$MessageType? type,
-    String? userId,
-    String? content,
-    DateTime? createdAt,
-    String? replyToId,
-  }) =>
-      _res;
+  CopyWith$Fragment$message<TRes> get node =>
+      CopyWith$Fragment$message.stub(_res);
 }
 
 class Query$GetChatMessages$getChatMessages$pageInfo {
@@ -1106,6 +969,7 @@ class Query$GetChatMessages$getChatMessages$pageInfo {
     this.startCursor,
     required this.hasNextPage,
     this.endCursor,
+    this.$__typename = 'PageInfo',
   });
 
   factory Query$GetChatMessages$getChatMessages$pageInfo.fromJson(
@@ -1114,11 +978,13 @@ class Query$GetChatMessages$getChatMessages$pageInfo {
     final l$startCursor = json['startCursor'];
     final l$hasNextPage = json['hasNextPage'];
     final l$endCursor = json['endCursor'];
+    final l$$__typename = json['__typename'];
     return Query$GetChatMessages$getChatMessages$pageInfo(
       hasPreviousPage: (l$hasPreviousPage as bool),
       startCursor: (l$startCursor as String?),
       hasNextPage: (l$hasNextPage as bool),
       endCursor: (l$endCursor as String?),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -1130,6 +996,8 @@ class Query$GetChatMessages$getChatMessages$pageInfo {
 
   final String? endCursor;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$hasPreviousPage = hasPreviousPage;
@@ -1140,6 +1008,8 @@ class Query$GetChatMessages$getChatMessages$pageInfo {
     _resultData['hasNextPage'] = l$hasNextPage;
     final l$endCursor = endCursor;
     _resultData['endCursor'] = l$endCursor;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -1149,11 +1019,13 @@ class Query$GetChatMessages$getChatMessages$pageInfo {
     final l$startCursor = startCursor;
     final l$hasNextPage = hasNextPage;
     final l$endCursor = endCursor;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       l$hasPreviousPage,
       l$startCursor,
       l$hasNextPage,
       l$endCursor,
+      l$$__typename,
     ]);
   }
 
@@ -1186,6 +1058,11 @@ class Query$GetChatMessages$getChatMessages$pageInfo {
     if (l$endCursor != lOther$endCursor) {
       return false;
     }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
     return true;
   }
 }
@@ -1215,6 +1092,7 @@ abstract class CopyWith$Query$GetChatMessages$getChatMessages$pageInfo<TRes> {
     String? startCursor,
     bool? hasNextPage,
     String? endCursor,
+    String? $__typename,
   });
 }
 
@@ -1236,6 +1114,7 @@ class _CopyWithImpl$Query$GetChatMessages$getChatMessages$pageInfo<TRes>
     Object? startCursor = _undefined,
     Object? hasNextPage = _undefined,
     Object? endCursor = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Query$GetChatMessages$getChatMessages$pageInfo(
         hasPreviousPage:
@@ -1251,6 +1130,9 @@ class _CopyWithImpl$Query$GetChatMessages$getChatMessages$pageInfo<TRes>
         endCursor: endCursor == _undefined
             ? _instance.endCursor
             : (endCursor as String?),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
@@ -1265,6 +1147,7 @@ class _CopyWithStubImpl$Query$GetChatMessages$getChatMessages$pageInfo<TRes>
     String? startCursor,
     bool? hasNextPage,
     String? endCursor,
+    String? $__typename,
   }) =>
       _res;
 }

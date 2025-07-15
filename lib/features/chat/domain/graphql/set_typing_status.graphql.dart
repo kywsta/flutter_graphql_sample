@@ -134,27 +134,41 @@ class _CopyWithStubImpl$Variables$Mutation$SetTypingStatus<TRes>
 }
 
 class Mutation$SetTypingStatus {
-  Mutation$SetTypingStatus({required this.setTypingStatus});
+  Mutation$SetTypingStatus({
+    required this.setTypingStatus,
+    this.$__typename = 'Mutation',
+  });
 
   factory Mutation$SetTypingStatus.fromJson(Map<String, dynamic> json) {
     final l$setTypingStatus = json['setTypingStatus'];
+    final l$$__typename = json['__typename'];
     return Mutation$SetTypingStatus(
-        setTypingStatus: (l$setTypingStatus as bool));
+      setTypingStatus: (l$setTypingStatus as bool),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final bool setTypingStatus;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$setTypingStatus = setTypingStatus;
     _resultData['setTypingStatus'] = l$setTypingStatus;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$setTypingStatus = setTypingStatus;
-    return Object.hashAll([l$setTypingStatus]);
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$setTypingStatus,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -169,6 +183,11 @@ class Mutation$SetTypingStatus {
     final l$setTypingStatus = setTypingStatus;
     final lOther$setTypingStatus = other.setTypingStatus;
     if (l$setTypingStatus != lOther$setTypingStatus) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -193,7 +212,10 @@ abstract class CopyWith$Mutation$SetTypingStatus<TRes> {
   factory CopyWith$Mutation$SetTypingStatus.stub(TRes res) =
       _CopyWithStubImpl$Mutation$SetTypingStatus;
 
-  TRes call({bool? setTypingStatus});
+  TRes call({
+    bool? setTypingStatus,
+    String? $__typename,
+  });
 }
 
 class _CopyWithImpl$Mutation$SetTypingStatus<TRes>
@@ -209,12 +231,19 @@ class _CopyWithImpl$Mutation$SetTypingStatus<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? setTypingStatus = _undefined}) =>
+  TRes call({
+    Object? setTypingStatus = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
       _then(Mutation$SetTypingStatus(
-          setTypingStatus:
-              setTypingStatus == _undefined || setTypingStatus == null
-                  ? _instance.setTypingStatus
-                  : (setTypingStatus as bool)));
+        setTypingStatus:
+            setTypingStatus == _undefined || setTypingStatus == null
+                ? _instance.setTypingStatus
+                : (setTypingStatus as bool),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 }
 
 class _CopyWithStubImpl$Mutation$SetTypingStatus<TRes>
@@ -223,7 +252,11 @@ class _CopyWithStubImpl$Mutation$SetTypingStatus<TRes>
 
   TRes _res;
 
-  call({bool? setTypingStatus}) => _res;
+  call({
+    bool? setTypingStatus,
+    String? $__typename,
+  }) =>
+      _res;
 }
 
 const documentNodeMutationSetTypingStatus = DocumentNode(definitions: [
@@ -267,7 +300,14 @@ const documentNodeMutationSetTypingStatus = DocumentNode(definitions: [
         ],
         directives: [],
         selectionSet: null,
-      )
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
     ]),
   ),
 ]);

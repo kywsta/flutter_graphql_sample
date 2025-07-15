@@ -105,28 +105,42 @@ class _CopyWithStubImpl$Variables$Mutation$SendMessage<TRes>
 }
 
 class Mutation$SendMessage {
-  Mutation$SendMessage({required this.sendMessage});
+  Mutation$SendMessage({
+    required this.sendMessage,
+    this.$__typename = 'Mutation',
+  });
 
   factory Mutation$SendMessage.fromJson(Map<String, dynamic> json) {
     final l$sendMessage = json['sendMessage'];
+    final l$$__typename = json['__typename'];
     return Mutation$SendMessage(
-        sendMessage: Mutation$SendMessage$sendMessage.fromJson(
-            (l$sendMessage as Map<String, dynamic>)));
+      sendMessage: Mutation$SendMessage$sendMessage.fromJson(
+          (l$sendMessage as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final Mutation$SendMessage$sendMessage sendMessage;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$sendMessage = sendMessage;
     _resultData['sendMessage'] = l$sendMessage.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$sendMessage = sendMessage;
-    return Object.hashAll([l$sendMessage]);
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$sendMessage,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -140,6 +154,11 @@ class Mutation$SendMessage {
     final l$sendMessage = sendMessage;
     final lOther$sendMessage = other.sendMessage;
     if (l$sendMessage != lOther$sendMessage) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -163,7 +182,10 @@ abstract class CopyWith$Mutation$SendMessage<TRes> {
   factory CopyWith$Mutation$SendMessage.stub(TRes res) =
       _CopyWithStubImpl$Mutation$SendMessage;
 
-  TRes call({Mutation$SendMessage$sendMessage? sendMessage});
+  TRes call({
+    Mutation$SendMessage$sendMessage? sendMessage,
+    String? $__typename,
+  });
   CopyWith$Mutation$SendMessage$sendMessage<TRes> get sendMessage;
 }
 
@@ -180,10 +202,18 @@ class _CopyWithImpl$Mutation$SendMessage<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? sendMessage = _undefined}) => _then(Mutation$SendMessage(
-      sendMessage: sendMessage == _undefined || sendMessage == null
-          ? _instance.sendMessage
-          : (sendMessage as Mutation$SendMessage$sendMessage)));
+  TRes call({
+    Object? sendMessage = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
+      _then(Mutation$SendMessage(
+        sendMessage: sendMessage == _undefined || sendMessage == null
+            ? _instance.sendMessage
+            : (sendMessage as Mutation$SendMessage$sendMessage),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   CopyWith$Mutation$SendMessage$sendMessage<TRes> get sendMessage {
     final local$sendMessage = _instance.sendMessage;
@@ -198,7 +228,11 @@ class _CopyWithStubImpl$Mutation$SendMessage<TRes>
 
   TRes _res;
 
-  call({Mutation$SendMessage$sendMessage? sendMessage}) => _res;
+  call({
+    Mutation$SendMessage$sendMessage? sendMessage,
+    String? $__typename,
+  }) =>
+      _res;
 
   CopyWith$Mutation$SendMessage$sendMessage<TRes> get sendMessage =>
       CopyWith$Mutation$SendMessage$sendMessage.stub(_res);
@@ -246,8 +280,22 @@ const documentNodeMutationSendMessage = DocumentNode(definitions: [
             directives: [],
             selectionSet: null,
           ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
         ]),
-      )
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
     ]),
   ),
 ]);
@@ -350,14 +398,17 @@ class Mutation$SendMessage$sendMessage {
   Mutation$SendMessage$sendMessage({
     required this.id,
     required this.createdAt,
+    this.$__typename = 'Message',
   });
 
   factory Mutation$SendMessage$sendMessage.fromJson(Map<String, dynamic> json) {
     final l$id = json['id'];
     final l$createdAt = json['createdAt'];
+    final l$$__typename = json['__typename'];
     return Mutation$SendMessage$sendMessage(
       id: (l$id as String),
       createdAt: DateTime.parse((l$createdAt as String)),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -365,12 +416,16 @@ class Mutation$SendMessage$sendMessage {
 
   final DateTime createdAt;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$id = id;
     _resultData['id'] = l$id;
     final l$createdAt = createdAt;
     _resultData['createdAt'] = l$createdAt.toIso8601String();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -378,9 +433,11 @@ class Mutation$SendMessage$sendMessage {
   int get hashCode {
     final l$id = id;
     final l$createdAt = createdAt;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       l$id,
       l$createdAt,
+      l$$__typename,
     ]);
   }
 
@@ -401,6 +458,11 @@ class Mutation$SendMessage$sendMessage {
     final l$createdAt = createdAt;
     final lOther$createdAt = other.createdAt;
     if (l$createdAt != lOther$createdAt) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -428,6 +490,7 @@ abstract class CopyWith$Mutation$SendMessage$sendMessage<TRes> {
   TRes call({
     String? id,
     DateTime? createdAt,
+    String? $__typename,
   });
 }
 
@@ -447,12 +510,16 @@ class _CopyWithImpl$Mutation$SendMessage$sendMessage<TRes>
   TRes call({
     Object? id = _undefined,
     Object? createdAt = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Mutation$SendMessage$sendMessage(
         id: id == _undefined || id == null ? _instance.id : (id as String),
         createdAt: createdAt == _undefined || createdAt == null
             ? _instance.createdAt
             : (createdAt as DateTime),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
@@ -465,6 +532,7 @@ class _CopyWithStubImpl$Mutation$SendMessage$sendMessage<TRes>
   call({
     String? id,
     DateTime? createdAt,
+    String? $__typename,
   }) =>
       _res;
 }

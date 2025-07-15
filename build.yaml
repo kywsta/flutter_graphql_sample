@@ -5,7 +5,7 @@ targets:
         options:
           clients:
             - graphql
-          addTypename: false
+          addTypename: true
           scalars:
             DateTimeISO: 
               type: DateTime

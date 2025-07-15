@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
-import 'package:flutter_graphql_sample/features/chat/domain/graphql/get_chat_messages.graphql.dart';
+import 'package:flutter_graphql_sample/core/graphql/schema.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/graphql/get_chats.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/bloc/chat_detail_bloc.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/cubit/selected_chat_cubit.dart';
@@ -120,8 +120,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   }
 
   Widget _buildMessagesList(
-      List<Query$GetChatMessages$getChatMessages$edges$node> messages,
-      bool hasReachedMax) {
+      List<Fragment$message> messages, bool hasReachedMax) {
     return ListView.builder(
       controller: _scrollController,
       itemCount: hasReachedMax ? messages.length : messages.length + 1,
@@ -149,8 +148,7 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
     );
   }
 
-  Widget _buildMessageBubble(
-      Query$GetChatMessages$getChatMessages$edges$node message) {
+  Widget _buildMessageBubble(Fragment$message message) {
     final theme = Theme.of(context);
 
     final currentUserId = AuthSession().userId;

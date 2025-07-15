@@ -103,28 +103,42 @@ class _CopyWithStubImpl$Variables$Subscription$TypingIndicator<TRes>
 }
 
 class Subscription$TypingIndicator {
-  Subscription$TypingIndicator({required this.typingIndicator});
+  Subscription$TypingIndicator({
+    required this.typingIndicator,
+    this.$__typename = 'Subscription',
+  });
 
   factory Subscription$TypingIndicator.fromJson(Map<String, dynamic> json) {
     final l$typingIndicator = json['typingIndicator'];
+    final l$$__typename = json['__typename'];
     return Subscription$TypingIndicator(
-        typingIndicator: Subscription$TypingIndicator$typingIndicator.fromJson(
-            (l$typingIndicator as Map<String, dynamic>)));
+      typingIndicator: Subscription$TypingIndicator$typingIndicator.fromJson(
+          (l$typingIndicator as Map<String, dynamic>)),
+      $__typename: (l$$__typename as String),
+    );
   }
 
   final Subscription$TypingIndicator$typingIndicator typingIndicator;
+
+  final String $__typename;
 
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$typingIndicator = typingIndicator;
     _resultData['typingIndicator'] = l$typingIndicator.toJson();
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
   @override
   int get hashCode {
     final l$typingIndicator = typingIndicator;
-    return Object.hashAll([l$typingIndicator]);
+    final l$$__typename = $__typename;
+    return Object.hashAll([
+      l$typingIndicator,
+      l$$__typename,
+    ]);
   }
 
   @override
@@ -139,6 +153,11 @@ class Subscription$TypingIndicator {
     final l$typingIndicator = typingIndicator;
     final lOther$typingIndicator = other.typingIndicator;
     if (l$typingIndicator != lOther$typingIndicator) {
+      return false;
+    }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
       return false;
     }
     return true;
@@ -163,7 +182,10 @@ abstract class CopyWith$Subscription$TypingIndicator<TRes> {
   factory CopyWith$Subscription$TypingIndicator.stub(TRes res) =
       _CopyWithStubImpl$Subscription$TypingIndicator;
 
-  TRes call({Subscription$TypingIndicator$typingIndicator? typingIndicator});
+  TRes call({
+    Subscription$TypingIndicator$typingIndicator? typingIndicator,
+    String? $__typename,
+  });
   CopyWith$Subscription$TypingIndicator$typingIndicator<TRes>
       get typingIndicator;
 }
@@ -181,13 +203,19 @@ class _CopyWithImpl$Subscription$TypingIndicator<TRes>
 
   static const _undefined = <dynamic, dynamic>{};
 
-  TRes call({Object? typingIndicator = _undefined}) =>
+  TRes call({
+    Object? typingIndicator = _undefined,
+    Object? $__typename = _undefined,
+  }) =>
       _then(Subscription$TypingIndicator(
-          typingIndicator:
-              typingIndicator == _undefined || typingIndicator == null
-                  ? _instance.typingIndicator
-                  : (typingIndicator
-                      as Subscription$TypingIndicator$typingIndicator)));
+        typingIndicator: typingIndicator == _undefined ||
+                typingIndicator == null
+            ? _instance.typingIndicator
+            : (typingIndicator as Subscription$TypingIndicator$typingIndicator),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
+      ));
 
   CopyWith$Subscription$TypingIndicator$typingIndicator<TRes>
       get typingIndicator {
@@ -203,7 +231,11 @@ class _CopyWithStubImpl$Subscription$TypingIndicator<TRes>
 
   TRes _res;
 
-  call({Subscription$TypingIndicator$typingIndicator? typingIndicator}) => _res;
+  call({
+    Subscription$TypingIndicator$typingIndicator? typingIndicator,
+    String? $__typename,
+  }) =>
+      _res;
 
   CopyWith$Subscription$TypingIndicator$typingIndicator<TRes>
       get typingIndicator =>
@@ -266,8 +298,22 @@ const documentNodeSubscriptionTypingIndicator = DocumentNode(definitions: [
             directives: [],
             selectionSet: null,
           ),
+          FieldNode(
+            name: NameNode(value: '__typename'),
+            alias: null,
+            arguments: [],
+            directives: [],
+            selectionSet: null,
+          ),
         ]),
-      )
+      ),
+      FieldNode(
+        name: NameNode(value: '__typename'),
+        alias: null,
+        arguments: [],
+        directives: [],
+        selectionSet: null,
+      ),
     ]),
   ),
 ]);
@@ -360,6 +406,7 @@ class Subscription$TypingIndicator$typingIndicator {
     required this.isTyping,
     required this.userId,
     required this.username,
+    this.$__typename = 'TypingIndicator',
   });
 
   factory Subscription$TypingIndicator$typingIndicator.fromJson(
@@ -368,11 +415,13 @@ class Subscription$TypingIndicator$typingIndicator {
     final l$isTyping = json['isTyping'];
     final l$userId = json['userId'];
     final l$username = json['username'];
+    final l$$__typename = json['__typename'];
     return Subscription$TypingIndicator$typingIndicator(
       chatId: (l$chatId as String),
       isTyping: (l$isTyping as bool),
       userId: (l$userId as String),
       username: (l$username as String),
+      $__typename: (l$$__typename as String),
     );
   }
 
@@ -384,6 +433,8 @@ class Subscription$TypingIndicator$typingIndicator {
 
   final String username;
 
+  final String $__typename;
+
   Map<String, dynamic> toJson() {
     final _resultData = <String, dynamic>{};
     final l$chatId = chatId;
@@ -394,6 +445,8 @@ class Subscription$TypingIndicator$typingIndicator {
     _resultData['userId'] = l$userId;
     final l$username = username;
     _resultData['username'] = l$username;
+    final l$$__typename = $__typename;
+    _resultData['__typename'] = l$$__typename;
     return _resultData;
   }
 
@@ -403,11 +456,13 @@ class Subscription$TypingIndicator$typingIndicator {
     final l$isTyping = isTyping;
     final l$userId = userId;
     final l$username = username;
+    final l$$__typename = $__typename;
     return Object.hashAll([
       l$chatId,
       l$isTyping,
       l$userId,
       l$username,
+      l$$__typename,
     ]);
   }
 
@@ -440,6 +495,11 @@ class Subscription$TypingIndicator$typingIndicator {
     if (l$username != lOther$username) {
       return false;
     }
+    final l$$__typename = $__typename;
+    final lOther$$__typename = other.$__typename;
+    if (l$$__typename != lOther$$__typename) {
+      return false;
+    }
     return true;
   }
 }
@@ -468,6 +528,7 @@ abstract class CopyWith$Subscription$TypingIndicator$typingIndicator<TRes> {
     bool? isTyping,
     String? userId,
     String? username,
+    String? $__typename,
   });
 }
 
@@ -489,6 +550,7 @@ class _CopyWithImpl$Subscription$TypingIndicator$typingIndicator<TRes>
     Object? isTyping = _undefined,
     Object? userId = _undefined,
     Object? username = _undefined,
+    Object? $__typename = _undefined,
   }) =>
       _then(Subscription$TypingIndicator$typingIndicator(
         chatId: chatId == _undefined || chatId == null
@@ -503,6 +565,9 @@ class _CopyWithImpl$Subscription$TypingIndicator$typingIndicator<TRes>
         username: username == _undefined || username == null
             ? _instance.username
             : (username as String),
+        $__typename: $__typename == _undefined || $__typename == null
+            ? _instance.$__typename
+            : ($__typename as String),
       ));
 }
 
@@ -517,6 +582,7 @@ class _CopyWithStubImpl$Subscription$TypingIndicator$typingIndicator<TRes>
     bool? isTyping,
     String? userId,
     String? username,
+    String? $__typename,
   }) =>
       _res;
 }

@@ -28,10 +28,12 @@ class GraphQLService {
         inactivityTimeout: const Duration(seconds: 30),
         initialPayload: () async {
           final token = AuthSession().authToken;
-          if (token != null) {
+
+          if(token != null) {
             debugPrint('Connecting with token: $token');
             return {'Authorization': 'Bearer $token'};
           }
+
           debugPrint('No token found to connect with websocket');
           return {};
         },

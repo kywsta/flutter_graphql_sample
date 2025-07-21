@@ -1,45 +1,44 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
+import 'package:flutter_graphql_sample/core/auth/bloc/auth_bloc.dart';
+import 'package:flutter_graphql_sample/core/navigation/router_refresh_listenable.dart';
 import 'package:flutter_graphql_sample/features/auth/routes.dart';
-import 'package:flutter_graphql_sample/features/chat/presentation/routes.dart';
+import 'package:flutter_graphql_sample/features/chat/routes.dart';
 import 'package:go_router/go_router.dart';
 
 class AppNavigatorKey {
-  static final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 
   static BuildContext get context => navigatorKey.currentContext!;
 }
 
 class AppRouter {
-  static final AppRouter _instance = AppRouter._();
+  final GoRouter router;
 
-  AppRouter._();
+  AppRouter(AuthBloc authBloc)
+      : router = GoRouter(
+          navigatorKey: AppNavigatorKey.navigatorKey,
+          routes: [
+            ...AuthRoutes.routes,
+            ...ChatRoutes.routes,
+          ],
+          redirect: (context, state) {
+            // final isAuthenticated = AuthSession().isAuthenticated;
+            final authState = authBloc.state;
+            final isAuthenticated = authState is Authenticated;
 
-  factory AppRouter() => _instance;
+            if (!isAuthenticated) {
+              debugPrint("Not authenticated, redirecting to login");
+              return AuthRoutes.login;
+            }
 
-  
+            if (state.matchedLocation == AuthRoutes.login && isAuthenticated) {
+              debugPrint("Login success, redirecting to chats");
+              return ChatRoutes.chats;
+            }
 
-  final router = GoRouter(
-    navigatorKey: AppNavigatorKey.navigatorKey,
-    routes: [
-      ...AuthRoutes.routes,
-      ...ChatRoutes.routes,
-    ],
-    redirect: (context, state) {
-      final isAuthenticated = AuthSession().isAuthenticated;
-
-      if (!isAuthenticated) {
-        debugPrint("Not authenticated, redirecting to login");
-        return AuthRoutes.login;
-      }
-
-      if (state.matchedLocation == '/login' && isAuthenticated) {
-        debugPrint("Login success, redirecting to chats");
-        return ChatRoutes.chats;
-      }
-
-      return null;
-    },
-    refreshListenable: AuthSession(),
-  );
+            return null;
+          },
+          refreshListenable: RouterRefreshListenable(authBloc.stream),
+        );
 }

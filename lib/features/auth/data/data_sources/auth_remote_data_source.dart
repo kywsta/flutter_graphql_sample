@@ -1,12 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_graphql_sample/core/constants/network.dart';
-import 'package:flutter_graphql_sample/features/auth/domain/models/login_model.dart';
-import 'package:flutter_graphql_sample/features/auth/domain/models/register_model.dart';
 import 'package:flutter_graphql_sample/core/auth/models/user_auth_model.dart';
+import 'package:flutter_graphql_sample/core/constants/network.dart';
 
 abstract class AuthRemoteDataSource {
-  Future<UserAuthModel> login(LoginModel loginModel);
-  Future<UserAuthModel> register(RegisterModel registerModel);
+  Future<UserAuthModel> login(String userName, String password);
 }
 
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
@@ -15,19 +12,13 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource {
   AuthRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<UserAuthModel> login(LoginModel loginModel) async {
+  Future<UserAuthModel> login(String userName, String password) async {
     final url = NetworkConstants.login;
 
-    final response = await dio.post(url, data: loginModel.toJson());
-
-    return UserAuthModel.fromJson(response.data);
-  }
-
-  @override
-  Future<UserAuthModel> register(RegisterModel registerModel) async {
-    final url = NetworkConstants.register;
-
-    final response = await dio.post(url, data: registerModel.toJson());
+    final response = await dio.post(url, data: {
+      'username': userName,
+      'password': password,
+    });
 
     return UserAuthModel.fromJson(response.data);
   }

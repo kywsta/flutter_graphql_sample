@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_graphql_sample/core/auth/bloc/auth_bloc.dart';
 import 'package:flutter_graphql_sample/core/di/service_locator.dart';
 import 'package:flutter_graphql_sample/core/graphql/graphql_service.dart';
+import 'package:flutter_graphql_sample/core/navigation/app_router.dart';
 import 'package:flutter_graphql_sample/core/network/dio_factory.dart';
 import 'package:flutter_graphql_sample/features/auth/auth_injections.dart';
 import 'package:flutter_graphql_sample/features/chat/chat_injections.dart';
@@ -15,6 +17,8 @@ void initServiceLocator() {
   _initUseCases();
   _initBlocs();
   _initServices();
+
+  _initAppRouter();
 }
 
 void _initDataSources() {
@@ -38,3 +42,8 @@ void _initBlocs() {
 }
 
 void _initServices() {}
+
+void _initAppRouter() {
+  serviceLocator.registerLazySingleton<AppRouter>(
+      () => AppRouter(serviceLocator.get<AuthBloc>()));
+}

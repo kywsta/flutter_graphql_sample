@@ -22,7 +22,7 @@ class ChatRoutes {
 
   static final routes = [
     GoRoute(
-      path: '/',
+      path: chats,
       builder: (context, state) => BlocProvider(
         create: (context) => ChatListBloc(
           getChatsUseCase: serviceLocator.get<GetChatsUseCase>(),
@@ -31,7 +31,7 @@ class ChatRoutes {
       ),
     ),
     GoRoute(
-      path: '/chat/:chatId',
+      path: chatDetail,
       builder: (context, state) => BlocProvider(
         key: ValueKey(state.pathParameters['chatId']),
         create: (context) => ChatDetailBloc(
@@ -48,13 +48,15 @@ class ChatRoutes {
       ),
     )
   ];
+}
 
-  static void navigateToChats() {
-    AppRouter().router.go('/');
+extension ChatRoutesExtension on AppRouter {
+  void navigateToChats() {
+    router.go(ChatRoutes.chats);
   }
 
-  static void navigateToChatDetail(Query$GetChats$getChats$edges$node chat) {
-    AppNavigatorKey.context.read<SelectedChatCubit>().setSelectedChat(chat);
-    AppRouter().router.push('/chat/${chat.id}');
+  void navigateToChatDetail(Query$GetChats$getChats$edges$node chat) {
+    serviceLocator.get<SelectedChatCubit>().setSelectedChat(chat);
+    router.push(ChatRoutes.chatDetail.replaceFirst(':chatId', chat.id));
   }
 }

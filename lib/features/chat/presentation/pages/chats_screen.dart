@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
+import 'package:flutter_graphql_sample/core/auth/bloc/auth_bloc.dart';
 import 'package:flutter_graphql_sample/core/di/service_locator.dart';
-import 'package:flutter_graphql_sample/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:flutter_graphql_sample/core/navigation/app_router.dart';
 import 'package:flutter_graphql_sample/features/chat/domain/graphql/get_chats.graphql.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/bloc/chat_list_bloc.dart';
-import 'package:flutter_graphql_sample/features/chat/presentation/routes.dart';
+import 'package:flutter_graphql_sample/features/chat/routes.dart';
 
 class ChatsScreen extends StatefulWidget {
   const ChatsScreen({super.key});
@@ -192,7 +193,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   }
 
   void _logout() {
-    serviceLocator.get<AuthBloc>().add(LogoutEvent());
+    serviceLocator.get<AuthBloc>().add(LogoutRequested());
   }
 
   void _loadMoreListener() {
@@ -205,7 +206,7 @@ class _ChatsScreenState extends State<ChatsScreen> {
   }
 
   void _openChatDetail(Query$GetChats$getChats$edges$node chat) {
-    ChatRoutes.navigateToChatDetail(chat);
+    serviceLocator.get<AppRouter>().navigateToChatDetail(chat);
   }
 
   void _showCreateChatDialog() {

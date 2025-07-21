@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_graphql_sample/core/auth/auth_session.dart';
+import 'package:flutter_graphql_sample/core/auth/bloc/auth_bloc.dart';
 import 'package:flutter_graphql_sample/core/di/service_injector.dart';
 import 'package:flutter_graphql_sample/core/di/service_locator.dart';
 import 'package:flutter_graphql_sample/core/navigation/app_router.dart';
-import 'package:flutter_graphql_sample/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:flutter_graphql_sample/features/chat/presentation/cubit/selected_chat_cubit.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -29,15 +28,10 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => serviceLocator<AuthBloc>()),
-        BlocProvider(create: (context) => serviceLocator<SelectedChatCubit>()),
+        BlocProvider(create: (context) => serviceLocator.get<AuthBloc>()),
+        BlocProvider(create: (context) => serviceLocator.get<SelectedChatCubit>()),
       ],
-      child: ListenableBuilder(
-        listenable: AuthSession(),
-        builder: (BuildContext context, Widget? child) {
-          return AppView();
-        },
-      ),
+      child: AppView(),
     );
   }
 }
@@ -48,7 +42,7 @@ class AppView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: AppRouter().router,
+      routerConfig: serviceLocator.get<AppRouter>().router,
       title: 'Flappy Chat',
       theme: ThemeData.dark(useMaterial3: true),
       debugShowCheckedModeBanner: false,

@@ -74,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
             },
             enabled: !isLoading,
           ),
+          const SizedBox(height: 16),
           TextFormField(
             controller: _passwordController,
             decoration: const InputDecoration(

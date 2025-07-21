@@ -1,17 +1,60 @@
-class NetworkException implements Exception {}
+abstract base class AppException {
+  final dynamic exception;
+  final StackTrace? stackTrace;
 
-class ParseException implements Exception {}
+  AppException({
+    required this.exception,
+    required this.stackTrace,
+  });
+}
 
-class UnauthorizedException implements Exception {}
+final class BadRequestException extends AppException {
+  final String? message;
+  BadRequestException({
+    required super.exception,
+    required super.stackTrace,
+    required this.message,
+  });
+}
 
-class ForbiddenException implements Exception {}
+final class UnauthorizedException extends AppException {
+  UnauthorizedException({required super.exception, required super.stackTrace});
+}
 
-class NotFoundException implements Exception {}
+final class ForbiddenException extends AppException {
+  ForbiddenException({required super.exception, required super.stackTrace});
+}
 
-class BadRequestException implements Exception {}
+final class NotFoundException extends AppException {
+  NotFoundException({required super.exception, required super.stackTrace});
+}
 
-class InternalServerErrorException implements Exception {}
+final class CancleTokenException extends AppException {
+  CancleTokenException({required super.exception, required super.stackTrace});
+}
 
-class ServiceUnavailableException implements Exception {}
+final class InternalServerErrorException extends AppException {
+  InternalServerErrorException(
+      {required super.exception, required super.stackTrace});
+}
 
-class NoDataException implements Exception {}
+final class ServiceUnavailableException extends AppException {
+  ServiceUnavailableException(
+      {required super.exception, required super.stackTrace});
+}
+
+final class NetworkException extends AppException {
+  NetworkException({required super.exception, required super.stackTrace});
+}
+
+final class SystemException extends AppException {
+  SystemException({required super.exception, required super.stackTrace});
+}
+
+final class ParseException extends AppException {
+  ParseException({required super.exception, required super.stackTrace});
+}
+
+final class UnknownException extends AppException {
+  UnknownException({required super.exception, required super.stackTrace});
+}

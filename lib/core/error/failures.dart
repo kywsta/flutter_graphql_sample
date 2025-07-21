@@ -1,14 +1,13 @@
 import 'package:flutter_graphql_sample/core/error/exceptions.dart';
 
 class Failure {
-  final dynamic exception;
-  final StackTrace? stackTrace;
+  final AppException exception;
 
   final FailureInterpretation interpretation;
 
-  Failure({required this.exception, this.stackTrace})
+  Failure({required this.exception})
       : interpretation =
-            FailuerInterpretationHelper().getInterpretation(exception);
+            FailureInterpretationHelper().getInterpretation(exception);
 }
 
 class FailureInterpretation {
@@ -18,60 +17,84 @@ class FailureInterpretation {
   FailureInterpretation({required this.title, required this.message});
 }
 
-class FailuerInterpretationHelper {
-  final Map<Type, FailureInterpretation> _interpretations = {
-    UnauthorizedException: FailureInterpretation(
-      title: 'Unauthorized',
-      message: 'Please login to continue.',
-    ),
-    NetworkException: FailureInterpretation(
-      title: 'Connection Error',
-      message: 'Please check your internet connection and try again.',
-    ),
-    ForbiddenException: FailureInterpretation(
-      title: 'Forbidden',
-      message: 'You are not allowed to access this resource.',
-    ),
-    NotFoundException: FailureInterpretation(
-      title: 'Not Found',
-      message: 'The requested resource was not found.',
-    ),
-    BadRequestException: FailureInterpretation(
-      title: 'Error',
-      message:
-          'Unable to process your request, please check your inputs and try again.',
-    ),
-    InternalServerErrorException: FailureInterpretation(
-      title: 'Error',
-      message:
-          'Sorry, something went wrong at our end, please try again later.',
-    ),
-    ServiceUnavailableException: FailureInterpretation(
-      title: 'Error',
-      message:
-          'Sorry, our service is currently unavailable, please try again later.',
-    ),
-  };
-
-  FailureInterpretation getInterpretation(Object exception) {
+class FailureInterpretationHelper {
+  FailureInterpretation getInterpretation(AppException exception) {
     switch (exception) {
-      case UnauthorizedException():
-        return _interpretations[UnauthorizedException]!;
-      case NetworkException():
-        return _interpretations[NetworkException]!;
-      case ForbiddenException():
-        return _interpretations[ForbiddenException]!;
-      case NotFoundException():
-        return _interpretations[NotFoundException]!;
       case BadRequestException():
-        return _interpretations[BadRequestException]!;
+        return fromBadRequest(exception);
+      case UnauthorizedException():
+        return fromUnauthorized(exception);
+      case ForbiddenException():
+        return fromForbidden(exception);
+      case NotFoundException():
+        return fromNotFound(exception);
       case InternalServerErrorException():
-        return _interpretations[InternalServerErrorException]!;
+        return fromInternalServerError(exception);
       case ServiceUnavailableException():
-        return _interpretations[ServiceUnavailableException]!;
+        return fromServiceUnavailable(exception);
+      case NetworkException():
+        return fromNetwork(exception);
       default:
-        return FailureInterpretation(
-            title: "Error", message: "Sorry, something went wrong.");
+        return fromUnexpected(exception);
     }
+  }
+
+  FailureInterpretation fromBadRequest(BadRequestException exception) {
+    return FailureInterpretation(
+      title: "Error",
+      message: exception.message ?? "Sorry, something went wrong.",
+    );
+  }
+
+  FailureInterpretation fromUnauthorized(UnauthorizedException exception) {
+    return FailureInterpretation(
+      title: "Unauthorized",
+      message: "Please login to continue.",
+    );
+  }
+
+  FailureInterpretation fromForbidden(ForbiddenException exception) {
+    return FailureInterpretation(
+      title: "Forbidden",
+      message: "You are not allowed to access this resource.",
+    );
+  }
+
+  FailureInterpretation fromNotFound(NotFoundException exception) {
+    return FailureInterpretation(
+      title: "Not Found",
+      message: "The requested resource was not found.",
+    );
+  }
+
+  FailureInterpretation fromInternalServerError(
+      InternalServerErrorException exception) {
+    return FailureInterpretation(
+      title: "Error",
+      message: "Sorry, something went wrong.",
+    );
+  }
+
+  FailureInterpretation fromServiceUnavailable(
+      ServiceUnavailableException exception) {
+    return FailureInterpretation(
+      title: "Error",
+      message:
+          "Sorry, our service is currently unavailable, please try again later.",
+    );
+  }
+
+  FailureInterpretation fromNetwork(NetworkException exception) {
+    return FailureInterpretation(
+      title: "Connection Error",
+      message: "Please check your internet connection and try again.",
+    );
+  }
+
+  FailureInterpretation fromUnexpected(AppException exception) {
+    return FailureInterpretation(
+      title: "Error",
+      message: "Sorry, something went wrong.",
+    );
   }
 }

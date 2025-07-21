@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_graphql_sample/core/error/exceptions.dart';
+import 'package:flutter_graphql_sample/core/error/exception_factory.dart';
 import 'package:flutter_graphql_sample/core/error/failures.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
@@ -9,8 +9,9 @@ abstract class Repository {
     try {
       return Left(await fn());
     } catch (e, s) {
-      FlutterError.presentError(FlutterErrorDetails(exception: e, stack: s));
-      return Right(Failure(exception: e, stackTrace: s));
+      final appException = AppExceptionFactory.fromException(e, s);
+      FlutterError.presentError(FlutterErrorDetails(exception: appException, stack: appException.stackTrace));
+      return Right(Failure(exception: appException));
     }
   }
 
@@ -23,14 +24,11 @@ abstract class Repository {
         throw result.exception!;
       }
 
-      if (!result.isLoading && result.parsedData == null) {
-        throw NoDataException();
-      }
-
       return Left(result.parsedData as T);
     } catch (e, s) {
-      FlutterError.presentError(FlutterErrorDetails(exception: e, stack: s));
-      return Right(Failure(exception: e, stackTrace: s));
+      final appException = AppExceptionFactory.fromException(e, s);
+      FlutterError.presentError(FlutterErrorDetails(exception: appException, stack: appException.stackTrace));
+      return Right(Failure(exception: appException));
     }
   }
 
@@ -40,13 +38,10 @@ abstract class Repository {
         throw result.exception!;
       }
 
-      if (!result.isLoading && result.parsedData == null) {
-        throw NoDataException();
-      }
-
       return result.parsedData as T;
     }).handleError((e, s) {
-      FlutterError.presentError(FlutterErrorDetails(exception: e, stack: s));
+      final appException = AppExceptionFactory.fromException(e, s);
+      FlutterError.presentError(FlutterErrorDetails(exception: appException, stack: appException.stackTrace));
     });
   }
 }
